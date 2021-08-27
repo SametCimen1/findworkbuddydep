@@ -8,7 +8,7 @@
     "npm": "6.14.13"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Samet Cimen",
