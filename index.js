@@ -11,16 +11,16 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 const path = require('path');
 //routes
-if (process.env.NODE_ENV === "production") {
-  //server static content
-  //npm run build
-  app.use(express.static(path.join(__dirname, "client/build")));
-  app.use(express.static('userimg'))
-  app.use(express.static("build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   //server static content
+//   //npm run build
+//   app.use(express.static(path.join(__dirname, "client/build")));
+//   app.use(express.static('userimg'))
+//   app.use(express.static("build"));
+// }
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(express.static('userimg'))
-app.use(express.static("build"));
+// app.use(express.static('userimg'))
+// app.use(express.static("build"));
 
 
 
