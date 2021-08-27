@@ -1,0 +1,182 @@
+.imgContainer{
+    display: flex;
+    background-color: #677698;
+    width: 100%;
+    justify-content: space-between;
+    padding:50px 0;
+    padding-bottom: 10px;
+}
+.imgAndName{
+    margin:1rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+
+.userimg{
+    border-radius: 50%;
+    margin-right: 1rem;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.circle{
+    background-color: black;
+    width: 50px;
+    height: 50px;
+}
+.nameContainer{
+    color:white;
+    font-size: 2rem;
+    font-weight: 400;
+}
+.nameFollowers{
+    display: flex;
+    flex-direction: column;
+
+}
+.foll{
+    display: flex;
+    align-items: center;
+}
+.profileDot{
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 1rem;
+}
+.foll p{
+    color:white;
+ }
+
+ .editProfileContainer{
+
+     margin: 0 1rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ .editProfileBtn{
+  width: 100px;
+  padding:10px; 
+  background-color: transparent;
+  border: 1px solid white;
+  cursor:pointer;
+  color:white;
+ }
+ .editProfileBtn:hover{
+    background-color: white; 
+    color:black;
+   }
+/* .profileOne{
+    margin-right: 1rem;
+}
+.profileTwo{
+    margin: 0 1rem;
+} */
+
+.profileOptions{
+    margin: 1rem;
+    width: 50%;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+}
+.profileOptions li{
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.profileOptions li:hover{
+   color: rgba(0, 119, 255, 0.561);
+}
+.selected{
+   color: rgba(0, 89, 255, 0.829);
+}
+.profileContainer{
+    margin-top: 2rem;
+}
+.aboutContainer{
+    margin: 0rem 1rem;
+    padding:20px 10px;
+}
+.userName{
+    font-size: 1.6rem;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.about{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+.followingPosts{
+    background-color: rgb(200, 200, 200);
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;   
+}
+.followingNotPosts{
+    font-size: 1.3rem;
+    margin:0 1.6rem;
+}
+.postsText{
+    font-size: 1.6rem;
+}
+@media screen and (max-width:1000px) {
+    .profileOptions{
+      flex-direction: column;
+      margin: 0 auto;
+    }
+    .profileOptions li{
+     margin-top: 1rem;
+    }
+    .profileOptionsContainer{
+        text-align: center;
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .imgContainer{
+        flex-direction: column;
+    }
+}
+
+
+.followingContainer{
+  display: flex;
+  align-items: center;
+}
+
+.unfollow{
+    cursor: pointer;
+    margin-left: 2rem;
+    padding:10px;
+    background-color: rgb(255, 0, 85);
+    border: 0;
+    color:white;
+    border-radius: 10px;
+}
+
+.massege{
+    cursor: pointer;
+    margin-left: 2rem;
+    padding:10px;
+    background-color: rgb(0, 132, 255);
+    border: 0;
+    color:white;
+    border-radius: 10px;
+
+}
+.btnContainer{
+  display: flex;
+}
+@media screen and (max-width:440px) {
+    .btnContainer{
+        flex-direction: column;
+        justify-content: center;
+      }
+}

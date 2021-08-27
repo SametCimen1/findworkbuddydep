@@ -1,0 +1,209 @@
+*{
+    box-sizing: border-box;
+  }
+  .navbar{
+    width:100%;
+    display: flex;
+    align-items: center;
+    background-color: #48416b;
+    flex-direction: row;
+  }
+  .logo,.links{
+    width: 100%;
+  }
+  .logo{
+    min-width: 100px;
+  }
+  @media screen and (max-width:300px) {
+    .logo{
+      display: none;
+    }
+  }
+  
+  .links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .ulList{
+    width: 90%;
+    margin:0 auto;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding:10px;
+  }  
+  .ulList li{
+    margin:0 0.5rem;
+  }
+  
+  .firstLinks{
+  background-color: #112255;
+  color:rgb(155, 155, 155);  
+  border-radius: 40px;
+  width:50%;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  }
+.firstLinksContainer{
+  background-color: #112255;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  width: 25%;
+  height: 50px;
+}
+.link{
+  color: white;
+  text-decoration: none;
+}
+.imgLink{
+  height: 50px;
+  width: 50px;
+}
+@keyframes changeLinkColor {
+  0%{
+    color:white;
+  }
+  100%{
+    color: #4662a9;
+  }
+}
+.link:hover{
+  animation: changeLinkColor 0.5s ease forwards;
+}
+.btnContainer,.signBtnContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width:300px;
+  min-width:100px;
+}
+.btnContainer{
+  width:10%;
+}
+.signBtnContainer{
+  width: 50%;
+}
+.signup, .signin{
+  padding:10px 20px;
+  color: white;
+  border-radius: 20px;
+  border:0;
+  cursor: pointer;
+}
+.signin{
+  background-color: transparent;
+  border: 1px solid #3a6cfd;
+}
+.signin:hover{
+  border-color: white;
+  background-color: white;
+  color:black
+}
+.signup{
+  background-color: #3a6cfd;
+}
+
+.signup:hover{
+  background-color: white;
+  color:black
+}
+.logout{
+  padding:10px 20px;
+  color: white;
+  background-color: red;
+  border-radius: 20px;
+  border:0;
+  cursor: pointer;
+}
+.logout:hover{
+  border: 0;
+  background-color: white;
+  color:red
+}
+
+@media screen and (max-width:1348px) {
+  .ulList{
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width:1000px) {
+  .links{
+    flex-direction: column;
+  }
+  .navbar{
+    flex-direction: column;
+  }
+  .logo,.links{
+    width: 90%;
+   
+  }
+  .firstLinks{
+    width: 90%;
+    margin:1rem 0;
+  }
+  .firstLinksContainer{
+    width: 50%;
+    margin:1rem 0;
+  }
+  .btnContainer{
+    width: 60%;
+    margin:1rem 0;
+  }
+  .ulList{
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width:450px) {
+  .firstLinks{
+    width: 98%;
+    margin: 0 0;
+  }
+  .ulList{
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width:450px) {
+  .ulList{
+    font-size: 0.7rem;
+  }
+}
+.popupvisible{
+  width:50%;
+  display: block;
+  position: absolute;
+}
+
+.popsettings{
+  left: 20%;
+  top:10px;
+}
+.popnotif{
+  left: 45%;
+  top:10px;
+}
+.popup{
+  left: 60%;
+  top:10px;
+}
+.layoutPupop{
+  background-color: white;
+  box-shadow: 1px 1px 2px rgb(32, 32, 32),-1px 1px 2px rgb(32, 32, 32),1px -1px 2px rgb(32, 32, 32),-1px -1px 2px rgb(32, 32, 32);
+}
+
+.notif,.settings{
+  cursor: pointer;
+}
+.notif:hover ,.settings:hover{
+  fill:#3a6cfd;
+}
+.userImage{
+  object-fit: cover;
+  cursor: pointer;
+}

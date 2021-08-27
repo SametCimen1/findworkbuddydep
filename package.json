@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Find a partner to work with",
+  "main": "index.js",
+  "engines": {
+    "node": "14.17.3",
+    "npm": "6.14.13"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "Samet Cimen",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "node-pre-gyp": "^0.17.0",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12",
+    "npm": "^7.20.5",
+    "pg": "^8.7.1"
+  }
+}

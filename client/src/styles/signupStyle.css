@@ -1,0 +1,111 @@
+.container{
+    margin-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.formAndTextContainer{
+    width: 100%;
+    padding:10px;
+    text-align: center;
+}
+.signUpText{
+}
+.signUpText span{
+    color: #3F48CC;
+}
+.haveAccount{
+    cursor: pointer;
+}
+
+.haveAccount span{
+    color:#3F48CC;
+}
+.haveAccount span:hover{
+    color:#3fcc96;
+}
+
+.formContainer{
+    margin-top: 1rem;
+    padding:20px;
+
+}
+
+.input{
+    
+    width: 50%;
+    max-width: 400px;
+    padding:10px;
+    margin: 1rem 0;
+    border: 1px solid #DADADA;
+    background-color: #F3F3F3;
+}
+.imgForm{
+    
+    display: flex;
+    justify-content: center;
+}
+.imgInput{
+    width: 25%;
+    max-width: 400px;
+    padding:10px;
+    margin: 1rem 0;
+    border: 1px solid #DADADA;
+    background-color: #F3F3F3;
+}
+
+.btn{
+    width: 50%;
+    max-width: 400px;
+    padding:10px;
+    margin: 1rem 0;
+    border-radius: 10px;
+    border: 0;
+    background-color: #28C5C1;
+    color:white;
+    cursor: pointer;
+}
+.imgContainer{
+    display: none;
+}
+.btn:hover{
+    background-color: #284dc5;
+    color:white;
+}
+
+.img{
+    width: 100%;
+
+}
+
+@media screen and (min-width:1250px) {
+    .container{
+        margin-top: 7rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .formAndTextContainer{
+        width: 45%;
+   
+    }
+    .imgContainer{
+        width: 45%;
+        display: block;
+    }
+}
+
+
+@media screen and (min-height:1000px) {
+    .container{
+        margin-top: 8rem;
+ 
+    }
+}
+.googlebtn{
+    cursor: pointer;
+}

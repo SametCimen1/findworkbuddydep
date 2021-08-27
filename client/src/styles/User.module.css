@@ -1,0 +1,32 @@
+.container{
+    max-width: 300px;
+    min-height: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.userBox{
+display: flex;
+width: 90%;
+justify-content:flex-start;
+margin-left: 2rem;
+align-items: center;
+cursor: pointer;
+}
+.userImage{
+    border-radius: 50%;
+    width: 75px;
+    object-fit: cover;
+    height: 75px;
+}
+.userName{
+    margin-left: 1rem;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+    font-size: 1.5rem;
+}
+
+
+@media screen  and (max-width:440px){
+    
+}
