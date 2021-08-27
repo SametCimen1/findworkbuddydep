@@ -16,9 +16,12 @@ if (process.env.NODE_ENV === "production") {
   //npm run build
   app.use(express.static(path.join(__dirname, "client/build")));
   app.use(express.static('userimg'))
+  app.use(express.static("build"));
 }
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static('userimg'))
+app.use(express.static("build"));
+
 
 
 const authRoute = require('./routes/auth');
@@ -260,6 +263,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=>{
     console.log(`Listening on port ${PORT}`);
