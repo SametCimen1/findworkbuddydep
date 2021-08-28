@@ -59,6 +59,10 @@ router.post('/signup', async(req,res) => {
     console.log(process.env.GOOGLE_CLIENT_ID)
     console.log(process.env.GOOGLE_CLIENT_SECRET)
 
+    let myAccessToken = "";
+    for(let i = 0; i<20; i++){
+        myAccessToken += alphabet[Math.floor(Math.random() * 26)]
+    } 
     const  confirmURL = random;
     const addUser = await pool.query('INSERT INTO users(name, email, password, following, friendreq, followers, ispublic,groupid, role, image, ownimg, about, active, confirm) VALUES($1,$2,$3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)', [lowerName, req.body.email, hashPassword, [], [], [], true, [], 'user', "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png", false, '', false, confirmURL]);
     const transporter = nodemailer.createTransport({
@@ -68,6 +72,7 @@ router.post('/signup', async(req,res) => {
             user: "cimensamet338@gmail.com",
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            accessToken:myAccessToken
         }
       });
       
