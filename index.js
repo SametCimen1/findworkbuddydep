@@ -208,7 +208,7 @@ app.post('/updateData', checkAuth, async(req,res) =>{
   else if(req.body.about === '' && req.body.name !== ''){
     await pool.query('UPDATE users SET  name = $1 WHERE id = $2', [req.body.name, req.user._id])
   }
-  res.redirect(`http://localhost:3000/user/${req.user._id}`);
+  res.redirect(`https://findworkbuddydeploy.herokuapp.com/user/${req.user._id}`);
 })
 const uploadImg = async(files, id) => {
   const imgName = await pool.query('SELECT image, ownimg FROM users WHERE id = $1', [id]);
