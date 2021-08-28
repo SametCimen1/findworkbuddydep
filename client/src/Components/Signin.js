@@ -7,7 +7,7 @@ export default function Signup(){
 
   const [doesExist, setDoesExist] = useState(null);
 
-
+   console.log(process.env.REACT_APP_SECRET)
   const [email, setEmail] = useState('');
   const userExist = async() =>{
     const data = await fetch("/userexist",{

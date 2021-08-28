@@ -8,9 +8,6 @@ const devConfig = {
     host:process.env.DBHOST,
     port:process.env.DBPORT,
     database:process.env.DB,   
-    ssl: {
-        rejectUnauthorized: false
-      }
 }
 
 const proConfig = {
@@ -19,6 +16,7 @@ const proConfig = {
         rejectUnauthorized: false
       }
 }
-const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
+// const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
+const pool = new Pool(devConfig);
 
 module.exports = pool;
