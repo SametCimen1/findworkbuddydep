@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const pool = require('./Pool');
 const checkAuth = require('./routes/verifyToken');
 const cookieParser = require('cookie-parser')
@@ -14,16 +14,17 @@ const path = require('path');
 if (process.env.NODE_ENV === "production") {
   //server static content
   //npm run build
-  app.use(express.static(path.join(__dirname, "client/build")));
-  app.use(express.static('userimg'))
-  app.use(express.static("build"));
+
 }
+
+app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static('userimg'))
+app.use(express.static("./client/build"));
+
 // app.use(express.static('userimg'))
 // app.use(express.static("build"));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-});
+
 
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/post');
@@ -262,6 +263,13 @@ app.post('/verify', async(req,res) =>{
 })
 
 
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 
 const PORT = process.env.PORT || 5000;
