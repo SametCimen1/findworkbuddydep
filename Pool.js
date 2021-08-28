@@ -7,11 +7,13 @@ const devConfig = {
     password:process.env.DBPASSWORD,
     host:process.env.DBHOST,
     port:process.env.DBPORT,
-    database:process.env.DB    
+    database:process.env.DB,   
+    ssl: true 
 }
 
 const proConfig = {
-    connectionString:process.env.DATABASE_URL
+    connectionString:process.env.DATABASE_URL,
+    ssl: true
 }
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
 
