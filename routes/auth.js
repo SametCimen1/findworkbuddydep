@@ -56,14 +56,18 @@ router.post('/signup', async(req,res) => {
       random += alphabet[Math.floor(Math.random() * 26)]
     } 
     console.log("RANDOM MESSAGE GENERATED")
+    console.log(process.env.GOOGLE_CLIENT_ID)
+    console.log(process.env.GOOGLE_CLIENT_SECRET)
 
     const  confirmURL = random;
     const addUser = await pool.query('INSERT INTO users(name, email, password, following, friendreq, followers, ispublic,groupid, role, image, ownimg, about, active, confirm) VALUES($1,$2,$3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)', [lowerName, req.body.email, hashPassword, [], [], [], true, [], 'user', "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png", false, '', false, confirmURL]);
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'cimensamet338@gmail.com',
-          pass: process.env.GMAILPASSWORD
+            type: "OAuth2",
+            user: "cimensamet338@gmail.com",
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }
       });
       
@@ -79,7 +83,7 @@ router.post('/signup', async(req,res) => {
         if (error) {
           console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log('Email ERRORRRR: ' + info.response);
         }
       });
       console.log("EMAIL SENT")
