@@ -8,12 +8,16 @@ const devConfig = {
     host:process.env.DBHOST,
     port:process.env.DBPORT,
     database:process.env.DB,   
-    ssl: true 
+    ssl: {
+        rejectUnauthorized: false
+      }
 }
 
 const proConfig = {
     connectionString:process.env.DATABASE_URL,
-    ssl: true
+    ssl: {
+        rejectUnauthorized: false
+      }
 }
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
 

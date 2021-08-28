@@ -32,10 +32,15 @@ router.post('/signup', async(req,res) => {
 
     //check if user exist
     console.log("SIGN UP CALLED")
-    const emailExist = await pool.query('SELECT * FROM users WHERE email = $1', [req.body.email]);
-    if(emailExist.rowCount > 0){
-        return res.status(409).send("email alreadyyyyyy exist");
+    try {
+        const emailExist = await pool.query('SELECT * FROM users WHERE email = $1', [req.body.email]);
+        if(emailExist.rowCount > 0){
+            return res.status(409).send("email alreadyyyyyy exist");
+        }        
+    } catch (error) {
+        console.log(error);
     }
+
 
     console.log("EMAIL EXIST SUCCESSFULL")
 
