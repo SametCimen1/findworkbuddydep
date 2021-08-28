@@ -1,19 +1,3 @@
-CREATE TABLE groups(
-    id SERIAL PRIMARY KEY,
-    name varchar(255) NOT NULL UNIQUE,
-    subject varchar(255) NOT NULL,
-    description varchar(255)
-);
-
-
-CREATE TABLE comment(
-    id SERIAL PRIMARY KEY,
-    text varchar(500),
-    userid integer,
-    userImg  varchar(255),
-    userName varchar(255)
-);
-
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     name VARCHAR(20)  UNIQUE NOT NULL,
@@ -34,6 +18,15 @@ CREATE TABLE users(
 
 
 
+CREATE TABLE groups(
+    id SERIAL PRIMARY KEY,
+    name varchar(255) NOT NULL UNIQUE,
+    subject varchar(255) NOT NULL,
+    description varchar(255)
+);
+
+
+
 
 CREATE TABLE posts(
     id SERIAL PRIMARY KEY,
@@ -50,3 +43,11 @@ CREATE TABLE posts(
 );
 
 
+
+CREATE TABLE comment(
+    id SERIAL PRIMARY KEY,
+    text varchar(500),
+    userid integer,
+    userImg  varchar(255),
+    userName varchar(255)
+);
