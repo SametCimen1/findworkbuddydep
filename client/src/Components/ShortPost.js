@@ -17,7 +17,6 @@ export default function Post({post}){
 
     const [like, setLike] = useState(false);
 
-   
     const [myPost, setMyPost] = useState(null);
     useEffect(()=>{
         if(myPost !== null) getTime();
@@ -97,7 +96,11 @@ export default function Post({post}){
         <div className = "post">
          <div className = "userInfo">
                    <div className = "imgAndNameContainer">
-                        <img src = {`/img/${myPost.image}`}  className = "userImage"/>
+                       {myPost.image.includes("http") ? 
+                       <img  src = {myPost.image} className = "userImage"/>
+                       :
+                       <img src = {`/img/${myPost.image}`}  className = "userImage"/>}
+                       
                         {/* <img src = {`http://localhost:5000/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
                         <div className = "nameContainer">
                             <p className = "userName">{myPost.username}</p>

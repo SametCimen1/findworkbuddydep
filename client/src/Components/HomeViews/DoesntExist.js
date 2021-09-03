@@ -27,7 +27,7 @@ export default function UserExist(){
               <div className = " move homeMainTextContainer">
                  <h1 className = " findBuddy"> Find a buddy to collobarete on your project!</h1>
                  <p className = "signUp">Sign up for free!</p>
-                 <Link className = "myLink" to = "/signup"> <button className = "getStarted">Get Started </button></Link>
+                 <Link className = "myLink" to = "/signup"> <button className = "getStarted">Get Started</button></Link>
                  <button className = "whatWeOffer" onClick = {()=>offer.current.scrollIntoView() }>See What we offer</button>
               </div>
              

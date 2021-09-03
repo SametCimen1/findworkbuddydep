@@ -1,3 +1,7 @@
+
+.bgcolor{
+    background-color: #f5f5f5;
+}
 .imgContainer{
     display: flex;
     background-color: #677698;
@@ -98,10 +102,6 @@
 .profileContainer{
     margin-top: 2rem;
 }
-.aboutContainer{
-    margin: 0rem 1rem;
-    padding:20px 10px;
-}
 .userName{
     font-size: 1.6rem;
     font-family: 'Noto Sans JP', sans-serif;
@@ -112,15 +112,10 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-family: 'Raleway', sans-serif;
 }
-.followingPosts{
-    background-color: rgb(200, 200, 200);
-    width: 100%;
-    margin-top: 2rem;
-    display: flex;   
-}
+
 .followingNotPosts{
     font-size: 1.3rem;
-    margin:0 1.6rem;
+  
 }
 .postsText{
     font-size: 1.6rem;
@@ -179,4 +174,109 @@
         flex-direction: column;
         justify-content: center;
       }
+}
+.followingPosts{
+    border-radius: 10px;
+    display: flex; 
+    flex-direction: column;
+
+}
+.shortPost{
+    background-color: red;
+}
+.usersPosts{
+    font-size: 2rem;
+    margin: 1rem 1.6rem;
+}
+.postsContainer{
+    display: flex;
+}
+.aboutContainer{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px black,-1px -1px 1px black,-1px 1px 1px black,1px -1px 1px black;
+    cursor: pointer;
+    margin: 0rem 1rem;
+    padding:20px 10px;
+
+}
+.none{
+    margin: 0 1.6rem;
+}
+
+.btnContainer{
+    display: flex;
+    margin: 0 auto;
+    margin: 1rem;
+    padding:20px 0;
+}
+.followBtn{
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgb(0, 132, 255);
+    border: 0;
+    color: white;
+    border-radius: 10px;
+}
+.notifications{
+    display: flex;
+    align-items: center;
+}
+.acceptBtn{
+    margin-left: 1rem;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgb(0, 132, 255);
+    border: 0;
+    color: white;
+    border-radius: 10px;
+}
+
+.option{
+  margin-left: 1.6rem;
+  font-size: 1.5rem;
+  color:rgb(40, 40, 40);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.editContainer{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 2rem 0;
+     flex-direction: column;    
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+}
+.newImgContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.aboutInput,.nameInput{
+    margin: 1rem 0;
+    padding:10px;
+}
+.uploadInput{
+    background-color:#677698;
+    color:white;
+    border: 0;
+    padding:10px;
+}
+.newCommentContainer{
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+.okBtn{
+    margin-left: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #677698;
+}
+.okBtn:hover{
+     background-color: #677698;
+     color:white
 }

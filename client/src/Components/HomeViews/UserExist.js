@@ -68,7 +68,7 @@ export default function UserExist(){
             <div className = "userExistImageContainer" style = {{backgroundImage:'url(/search.jpg)'}}>
                  <h1 className = "userExistStart">Subject Search</h1>
                  <p className = "userExistType">Type your subject in to find related posts for your subject or create a post for your subject for others to see</p>
-                 <p className = "userExistSubjectInfo">You can type multiple subjects etc <q>math science</q> or just one single subject</p>
+                 <p className = "userExistSubjectInfo">You can type multiple subjects <q>math science</q> or just one single subject</p>
 
                 <div className = "search">
                   <input type = "text" value = {subject} onChange = {(e) => setSubject(e.target.value)} className = "subject"  placeholder = "type in the subject"/>
@@ -78,7 +78,8 @@ export default function UserExist(){
             
 
     
-                <div className = {posts.length > 0 ? "posts visible" : "posts invisible" }>
+                {/* <div className = {posts.length > 0 ? "posts visible" : "posts invisible" }> */}
+                <div className = {posts.length > 0 ? "posts visible" : "posts visible" }>
                     <div className = "postSettings">
                         <div className = "sortContainer">
                             <p>Sort by</p>
@@ -92,11 +93,7 @@ export default function UserExist(){
                             <button className = "createPostBtn" onClick = {(e)=> setCreatePost(prev => !prev)}>Create new post</button>
                         </div>
                     </div>
-                    {/* {createPost && 
-                  
-                          } */}
-
-                    </div>
+                    {createPost && 
                     <div className = "newPost">                          
                           <div className = "searchPost">
                             <input type  = "text" value = {INheader} onChange = {(e)=> setINheader(e.target.value)} className = "INheader"  placeholder = "Tpye in the title"/>
@@ -109,7 +106,11 @@ export default function UserExist(){
                               <button className = "cancelBtn" onClick = {(e)=> setCreatePost(prev => !prev)}>Cancel</button>
                               <button className = "createBtn" onClick = {submitPost}>Create</button>
                             </div>
-                          </div>
+                          </div>                  
+                          } 
+
+                    </div>
+
                     <div className = "postsFlex">
                      {posts.map(post =>  <ShortPost post = {post} key = {post.id}/>)}  
                     </div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const pool = require('./Pool');
 const checkAuth = require('./routes/verifyToken');
 const cookieParser = require('cookie-parser')
@@ -9,22 +9,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const path = require('path');
 //routes
-if (process.env.NODE_ENV === "production") {
-  //server static content
-  //npm run build
-
-}
-
-app.use(express.static(path.join(__dirname, "client/build")));
-app.use(express.static('./userimg/img'))
-app.use(express.static("./client/build"));
-
-app.use(express.static('userimg'))
-// app.use(express.static("build"));
-
-
 
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/post');
@@ -37,10 +22,7 @@ const corsOptions ={
 }
 app.use(cors(corsOptions))
 app.use(fileUpload());
-
-
-
-
+app.use(express.static('userimg'))
 require('dotenv').config();
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
@@ -59,6 +41,7 @@ app.use('/api/user', authRoute);
 app.post('/userexist', async(req,res) =>{
   const {token} = req.cookies;
   if(token === '' || typeof token === 'undefined'){
+
     return res.json(false); 
   }
   else{
@@ -130,7 +113,7 @@ app.post('/getbyid', checkAuth, async(req,res) =>{
   }
 })
 
-
+//ch
 app.post('/getuser',checkAuth, async(req,res) =>{
   const id = req.user._id;
   try {
@@ -208,7 +191,7 @@ app.post('/updateData', checkAuth, async(req,res) =>{
   else if(req.body.about === '' && req.body.name !== ''){
     await pool.query('UPDATE users SET  name = $1 WHERE id = $2', [req.body.name, req.user._id])
   }
-  res.redirect(`https://findworkbuddydeploy.herokuapp.com/user/${req.user._id}`);
+  res.redirect(`http://localhost:3000/user/${req.user._id}`);
 })
 const uploadImg = async(files, id) => {
   const imgName = await pool.query('SELECT image, ownimg FROM users WHERE id = $1', [id]);
@@ -261,16 +244,6 @@ app.post('/verify', async(req,res) =>{
   }
 
 })
-
-
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
-app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=>{

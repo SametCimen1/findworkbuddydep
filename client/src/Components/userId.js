@@ -31,6 +31,7 @@ export default function UserId(){
         const newUser = {user:user, id:id}
         console.log("is friend")
         console.log(user.friend);
+        
     if(user.friend){
         return <Following myUser = {newUser}/>}
     else{

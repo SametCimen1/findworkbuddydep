@@ -300,3 +300,9 @@ footer{
     width: 50px;
     margin:5px;
 }
+.tryOutTodayText{
+    text-shadow: 2px 2px 5px black;
+}
+.getStarted, .whatWeOffer{
+    cursor: pointer;
+}

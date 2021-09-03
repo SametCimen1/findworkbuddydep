@@ -1,10 +1,13 @@
+import ShortPost from './ShortPost';
 import styles from '../styles/profileStyle.module.css';
+
 import {useState, useEffect} from 'react';
 export default function NotFollowing({myUser}){
   const [currentItem, setCurrentItem] = useState('profile');
+  const [posts, setPosts] = useState();
   const user = myUser.user;
   const id = myUser.id;
-  console.log("NOT FOLLOWING USEr") /*
+/*
   about: "Hello I am 16"
 followers: 0
 following: 0
@@ -23,6 +26,23 @@ ownimg: true
         body:JSON.stringify({id:id})
     })
   }
+  const getPosts = async() =>{
+    const data = await fetch('/post/getuserposts', {
+      method:"POST",
+      headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        credentials: 'include', // Don't forget to specify this if you need cookies
+        body:JSON.stringify({userid:myUser.id})
+    });
+    const response = await data.json();
+    setPosts(response);
+   
+  }
+  useEffect(()=>{
+    getPosts();
+  },[])
 
 
 
@@ -56,13 +76,22 @@ ownimg: true
 
      { currentItem === 'profile' && (
                 <div className = {styles.profileContainer}>
-                    <div className = {styles.aboutContainer}>
+                    <div className = {styles.btnContainer}>
+                        <button className = {styles.followBtn} onClick = {() => followRequest()}>Follow</button>
+                    </div>
+                    <div className = {styles.aboutContainer}>          
                         <p className = {styles.userName}>About {user.user.name}:</p>                   
                         <p className = {styles.about}>{user.user.about === '' ? <p>None</p> : user.user.about}</p>
                     </div>
+                    <div className = { typeof posts !== 'undefined' && posts.length !== 0 ? styles.followingPosts : styles.followingNotPosts}>
+                      <p className = {`${styles.userName}  ${styles.usersPosts}`}>{user.user.name}'s posts</p>
+                      <div className = {styles.postsContainer}>
+                        {typeof posts !== 'undefined' && posts.length !== 0 ?  posts.map(post =>  <ShortPost post = {post} key = {post.id} />): <p className = {styles.none}>none</p>}
+                      </div>
+                    </div>
                 </div>
             )
-            }
+      }
 
     </div>
   )

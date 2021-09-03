@@ -1,8 +1,10 @@
+import { useHistory } from "react-router-dom";
 import {  useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react'
 import '../styles/longStyle.css';
 export default function LongPost(){
     let { id } = useParams();
+    const history = useHistory();   
     
 
     useEffect(()=>{
@@ -13,6 +15,7 @@ export default function LongPost(){
     const [like, setLike] = useState(false);
     const [post, setPost] = useState(null);
     const [comment, setComment] = useState('');
+    const [myImage, setMyImage] = useState();
     useEffect(()=>{
         if(post !== null) getTime();
     },[post])
@@ -33,7 +36,6 @@ export default function LongPost(){
     const [time, setTime] = useState(0);
     const [timeUnit, setTimeUnit] = useState('');
     const getTime = () =>{
-           console.log(post)
             const date = new Date(post.uploadtime);
             const currentTime = new Date();
             const difference =  (currentTime - date);
@@ -102,29 +104,36 @@ export default function LongPost(){
     }
 
     const newComment = async() =>{
-        const data = await fetch('/post/newcomment', {
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json'
-              },
-              redirect: 'follow',
-              credentials: 'include', // Don't forget to specify this if you need cookies
-              body:JSON.stringify({postId:post.id, comment:comment})
-        })
-        getPost();
-        
-    
+        console.log("new comment ->", comment)
+        if(comment.length <= 0){
+        alert('comment is empty')
+        }
+        else{
+            const data = await fetch('/post/newcomment', {
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                credentials: 'include', // Don't forget to specify this if you need cookies
+                body:JSON.stringify({postId:post.id, comment:comment, reciever:post.userid})
+            })
+            getPost();
+        }
+      
     }
 
 
 
     useEffect(()=>{
         if(post !== null){
+            console.log("post is not null");
+            console.log(post)
         getComments();
         }
     },[post])
     
-    let promises;
+
     const getComments = async() =>{
         if(post !== null){
         post.commentby.forEach((id) => {
@@ -137,7 +146,7 @@ export default function LongPost(){
    
 
    const[comments, setComments] = useState([{}]);
-   const getComment = async (commentId) =>{       
+   const getComment = async (commentId) =>{    
      const data = await fetch('/post/getcomment', {
         method:"POST",
         headers: {
@@ -148,6 +157,7 @@ export default function LongPost(){
           body:JSON.stringify({id:commentId})
      })
      const response = await data.json();
+     console.log("comment", response)
     
      const isInList = comments.some(function(elem) {
         return (elem.id === response.id || (elem.text === response.text && elem.id === response.id))
@@ -157,6 +167,7 @@ export default function LongPost(){
       }
       console.log(isInList)
    };
+
 
 
    useEffect(() => {
@@ -184,15 +195,34 @@ export default function LongPost(){
           credentials: 'include', // Don't forget to specify this if you need cookies
           body:JSON.stringify({id:id, postId:post.id})
         });
+        const response = await data.json();
+        history.go(0)
         getPost();
    }
   
+
+   useEffect(()=>{
+       if(post !== null ){
+                let urlImage = '';             
+                for(let i = 0; i < 4; i++){
+                urlImage += post.image[i] 
+                }
+                if(urlImage === 'http'){
+                setMyImage(false);
+                } 
+                else{ 
+                setMyImage(true);
+                }
+        }
+   },[post])
+   
     if(post !== null){
         return(
             <div className = "LongPost">
              <div className = "userInfo">
                        <div className = "imgAndNameContainer">
-                            <img src = {post.image} className = "userImage"/>
+                           {myImage ? <img src = {`/img/${post.image}`} className = "userImage"/> : <img src = {post.image} className = "userImage"/>}
+                            
                             <div className = "nameContainer">
                                 <p className = "userName">Samet</p>
                                 <p>{time} {timeUnit} ago</p>
@@ -213,6 +243,7 @@ export default function LongPost(){
                         </div>
                         </div> */}
              </div>
+             {console.log(post)}
              <div className = "longTexts"> 
                 <h1 className = "longUserHeader "  >{post.header}</h1>
                 <p className = "longUserParagraph " >{post.paragraph}</p>
@@ -220,8 +251,7 @@ export default function LongPost(){
              {/* <button onClick = {likePost}>Like</button> */}
              <div className = "postInfo">
                 <div className = "viewComment">
-                    <p>0 views</p>
-                    <p className = "longPost">0 Comments</p>
+                    <p className = "longPost">{post.commentby.length} Comments</p>
                 </div>
                 <div className = "heartContainer">
                     <p>{post.likes}</p>
@@ -234,23 +264,22 @@ export default function LongPost(){
                  <input type = "text" value = {comment} onChange = {(e)=> setComment(e.target.value)}></input>
                  <button onClick = {newComment}>Comment</button>
                  <div>
-                  {/* {comments.map(elem => elem)} */}
+                  {console.log("commentsssssssss")}
+                  {console.log(comments)}
                   {/* {console.log("comments")} */}
-                 {comments.map(elem => {
-                   if(typeof elem.userimg !== 'undefined') { return (
-                         <div className = "commentContainer">
-                            <div className = "commentNameContainer"> 
-                               <img src =  {elem.userimg} className = "commentImage"/>
-                               <p className = "userName m">{elem.username}</p>
-                            </div>
-                            <p className = "userParagraph">{elem.text}</p>
-                            {myId === elem.userid ? <button onClick = {()=> deleteComment(elem.id)}>Delete</button> :''}
-                         </div>
-                     )}
-                     else{
+                 {comments.map(elem => (
+                   (typeof elem.userimg !== 'undefined' && (
+                    <div className = "commentContainer">
+                       <div className = "commentNameContainer"> 
+                          <img src =  {`http://localhost:5000/img/${elem.userimg}`} className = "commentImage"/>
+                          <p className = "userName m">{elem.username}</p>
+                          <p className = "LonguserParagraph">{elem.text}</p>
+                          {myId === elem.userid ? <button onClick = {()=> deleteComment(elem.id)} className = "dltBtn">Delete</button> :''}
+                       </div>
 
-                     }
-                 })}
+                    </div>
+                )) 
+                 ))}
                  </div>
              </div>
             </div>
