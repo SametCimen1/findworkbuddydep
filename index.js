@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const pool = require('./Pool');
 const checkAuth = require('./routes/verifyToken');
 const cookieParser = require('cookie-parser')
@@ -9,6 +9,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const path = require('path');
 //routes
 
 
