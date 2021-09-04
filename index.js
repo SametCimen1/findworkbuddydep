@@ -50,12 +50,13 @@ app.use('/api/user', authRoute);
 
 app.post('/userexist', async(req,res) =>{
   const {token} = req.cookies;
-  if(token === '' || typeof token === 'undefined'){
+  const decoded = Buffer.from(token, 'base64').toString();
+  if(decoded === '' || typeof decoded === 'undefined'){
 
     return res.json(false); 
   }
   else{
-    const verified = jwt.verify(token, process.env.TOKENSECRET);
+    const verified = jwt.verify(decoded, process.env.TOKENSECRET);
 
     try {
       const data = await pool.query('SELECT * FROM users WHERE id = $1', [verified._id]);
