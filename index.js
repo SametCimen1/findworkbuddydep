@@ -11,6 +11,14 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 //routes
 
+
+app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static('./userimg/img'))
+app.use(express.static("./client/build"));
+
+app.use(express.static('userimg'))
+
+
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/post');
 const userRoute = require('./routes/user');
@@ -23,12 +31,6 @@ const corsOptions ={
 }
 app.use(cors(corsOptions))
 app.use(fileUpload());
-app.use(express.static('userimg'))
-app.use(express.static(path.join(__dirname, "client/build")));
-app.use(express.static('./userimg/img'))
-app.use(express.static("./client/build"));
-
-app.use(express.static('userimg'))
 
 require('dotenv').config();
 app.use(cookieParser())
