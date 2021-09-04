@@ -50,12 +50,13 @@ app.use('/api/user', authRoute);
 
 app.post('/userexist', async(req,res) =>{
   const {token} = req.cookies;
-  const decoded = Buffer.from(token, 'base64').toString();
-  if(decoded === '' || typeof decoded === 'undefined'){
+  
+  if(token === '' || typeof token === 'undefined'){
 
     return res.json(false); 
   }
   else{
+    const decoded = Buffer.from(token, 'base64').toString();
     const verified = jwt.verify(decoded, process.env.TOKENSECRET);
 
     try {

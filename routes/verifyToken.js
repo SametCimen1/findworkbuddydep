@@ -4,14 +4,13 @@ const bcrypt = require('bcryptjs');
 module.exports = async function(req,res,next){
 
   const {token} = req.cookies;
-  const decoded = Buffer.from(token, 'base64').toString();
-  
 
-  if(!decoded){
+
+  if(!token){
     return res.status(401).send('access denied');
   }
   try {
-       
+         const decoded = Buffer.from(token, 'base64').toString();       
          const verified = jwt.verify(decoded, process.env.TOKENSECRET);
           req.user = verified;
          next();
