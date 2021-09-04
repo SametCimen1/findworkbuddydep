@@ -15,6 +15,7 @@ const authRoute = require('./routes/auth');
 const postRoute = require('./routes/post');
 const userRoute = require('./routes/user');
 const fileUpload = require('express-fileupload');
+
 const corsOptions ={
   origin:'http://localhost:3000', 
   credentials:true,            //access-control-allow-credentials:true
@@ -23,6 +24,12 @@ const corsOptions ={
 app.use(cors(corsOptions))
 app.use(fileUpload());
 app.use(express.static('userimg'))
+app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static('./userimg/img'))
+app.use(express.static("./client/build"));
+
+app.use(express.static('userimg'))
+
 require('dotenv').config();
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
