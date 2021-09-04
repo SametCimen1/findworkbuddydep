@@ -108,9 +108,14 @@ router.post('/signin', async(req,res) =>{
         console.log("everyting is ok")
         const token = jwt.sign({_id: user.id}, process.env.TOKENSECRET, {expiresIn: "3day"});
 
-        res.cookie('token', token, { secure: process.env.NODE_ENV !== "development",
-        httpOnly: true, maxAge: 72 * 60 * 60 * 1000 }); //3days
-        res.header('auth-token', token);
+
+        const encoded = btoa(token);
+        console.log("encoded")
+        console.log(encoded)
+
+        // res.cookie('token', token, { secure: process.env.NODE_ENV !== "development",
+        // httpOnly: true, maxAge: 72 * 60 * 60 * 1000 }); //3days
+        // res.header('auth-token', token);
         res.json('token set') 
     }
     else{
