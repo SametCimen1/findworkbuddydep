@@ -271,7 +271,7 @@ export default function LongPost(){
                    (typeof elem.userimg !== 'undefined' && (
                     <div className = "commentContainer">
                        <div className = "commentNameContainer"> 
-                          <img src =  {`http://localhost:5000/img/${elem.userimg}`} className = "commentImage"/>
+                          <img src =  {elem.userimg} className = "commentImage"/>
                           <p className = "userName m">{elem.username}</p>
                           <p className = "LonguserParagraph">{elem.text}</p>
                           {myId === elem.userid ? <button onClick = {()=> deleteComment(elem.id)} className = "dltBtn">Delete</button> :''}
