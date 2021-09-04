@@ -50,9 +50,11 @@ app.use('/api/user', authRoute);
 
 app.post('/userexist', async(req,res) =>{
   const {token} = req.cookies;
-  
+  console.log('userexiust')
+  console.log(token)
   if(token === '' || typeof token === 'undefined'){
-
+   console.log('userexist token doesnt')
+   console.log(token)
     return res.json(false); 
   }
   else{
@@ -63,9 +65,11 @@ app.post('/userexist', async(req,res) =>{
       const data = await pool.query('SELECT * FROM users WHERE id = $1', [verified._id]);
       const user = await data.rows[0];
       if(user){
+        console.log('everything went ok user exist')
         res.json(true);
       }  
     } catch (error) {
+      console.log('cookie exist but user doesnt logged out')
       res.clearCookie('token').json("logged out")
       res.json(false); 
     }
