@@ -108,9 +108,9 @@ router.post('/signin', async(req,res) =>{
         console.log("everyting is ok")
         const token = jwt.sign({_id: user.id}, process.env.TOKENSECRET, {expiresIn: "3day"});
         const encoded = Buffer.from(token).toString('base64')
-        res.cookie('token', encoded, { secure: true,
+        res.cookie('token', encoded, { secure: process.env.NODE_ENV !== "development",
         httpOnly: true, maxAge: 72 * 60 * 60 * 1000 }); //3days
-        res.header('auth-token', token);
+        res.header('auth-token', encoded);
         res.json('token set') 
     }
     else{
