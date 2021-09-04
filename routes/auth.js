@@ -109,8 +109,7 @@ router.post('/signin', async(req,res) =>{
 
         res.cookie('token', token, { secure: process.env.NODE_ENV !== "development",
         httpOnly: true, maxAge: 72 * 60 * 60 * 1000 }); //3days
-        res.header('auth-token', token).send("token set"); 
-        res.json('success');
+        res.header('auth-token', token).json("token set"); 
     }
     else{
         res.redirect("http://localhost:3000/mustbeactivated")
