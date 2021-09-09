@@ -13,7 +13,7 @@ export default function Layout({children}) {
 
   const history = useHistory();
   const checkIfUserExist = async() =>{
-      const doesTokenExist =  await fetch("http://localhost:5000/userexist",{
+      const doesTokenExist =  await fetch("/userexist",{
         method:"POST",
         headers: {
           'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ export default function Layout({children}) {
       });
       const res = await doesTokenExist.json();
       if(res){
-        const data = await fetch("http://localhost:5000/getuser", 
+        const data = await fetch("getuser", 
         {
           method:"POST",
           headers: {

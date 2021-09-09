@@ -50,16 +50,11 @@ app.use('/api/user', authRoute);
 
 app.post('/userexist', async(req,res) =>{
   const {token} = req.cookies;
-  console.log('userexiust')
-  console.log(token)
   if(token === '' || typeof token === 'undefined'){
-   console.log('userexist token doesnt')
-   console.log(token)
     return res.json(false); 
   }
   else{
-    const decoded = Buffer.from(token, 'base64').toString();
-    const verified = jwt.verify(decoded, process.env.TOKENSECRET);
+    const verified = jwt.verify(token, process.env.TOKENSECRET);
 
     try {
       const data = await pool.query('SELECT * FROM users WHERE id = $1', [verified._id]);
