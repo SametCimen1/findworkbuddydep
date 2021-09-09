@@ -221,7 +221,7 @@ export default function LongPost(){
             <div className = "LongPost">
              <div className = "userInfo">
                        <div className = "imgAndNameContainer">
-                           {myImage ? <img src = {`/img/${post.image}`} className = "userImage"/> : <img src = {post.image} className = "userImage"/>}
+                           {myImage ? <img src = {`http://localhost:5000/img/${post.image}`} className = "userImage"/> : <img src = {post.image} className = "userImage"/>}
                             
                             <div className = "nameContainer">
                                 <p className = "userName">Samet</p>

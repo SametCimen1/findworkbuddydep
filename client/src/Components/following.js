@@ -72,6 +72,7 @@ export default function Profile({myUser}){
               credentials: 'include', // Don't forget to specify this if you need cookies
               body:JSON.stringify({id:id})
         })
+        history.go(0);
       }
 
 
@@ -177,7 +178,7 @@ export default function Profile({myUser}){
                         <div className = {styles.newImgContainer}>
                           <input type = "file" name = "newimg"  className = {styles.newImageFile}/>
                           <p>or paste url</p>
-                          <input type = "text" name = "newimg"  className = {styles.newImage}/>
+                          <input type = "text" name = "newimgurl"  className = {styles.newImage}/>
                         </div>
                         <input type = "text" className = {styles.aboutInput} name = "about" value = {about} onChange = {(e)=> setAbout(e.target.value)} placeholder = "about" />
                         <input type = "text"className = {styles.nameInput}  name = "name" value = {name} onChange = {(e)=> setName(e.target.value.toLowerCase())} placeholder = "name" />
@@ -214,7 +215,7 @@ export default function Profile({myUser}){
                 <div>
                      <p className = {styles.option}>followers</p>
                     <div>
-                      {followers.length === 0 ? <h2>Not following anyone</h2> : followers.map(id => 
+                      {followers.length === 0 ? <p className = {styles.none}>No followers</p> : followers.map(id => 
                       <div className = {styles.followingContainer}>
                         <User id = {id} key = {id}/>
                         <button  className = {styles.massege}>Massege</button>
@@ -230,7 +231,7 @@ export default function Profile({myUser}){
            {isItme && currentItem === 'following' && (
                 <div>
                     <p className = {styles.option}>following</p>
-                    {following.length === 0 ? <h2>Not following anyone</h2> : 
+                    {following.length === 0 ? <p className = {styles.none}>Not following anyone</p> : 
                     following.map(id=>{return (
                     <div className = {styles.followingContainer}>
                        <User id = {id} key = {id}/>

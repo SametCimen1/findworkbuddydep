@@ -4,7 +4,7 @@ import { InView } from 'react-intersection-observer'
 import {useState, useRef} from 'react';
 
 export default function UserExist(){
-    const [isInView, setIsInView] = useState([{name:"first", t:false}, {name:"second", t:false}, {name:"third", t:false}, {name:"fourth", t:false}, {name:"fifth", t:false}, {name:"sixth", t:false}, {name:"seventh", t:false}])
+    const [isInView, setIsInView] = useState([{name:"first", t:false}, {name:"second", t:false}, {name:"third", t:false}])
     const changeView = (myType) =>{
         if(typeof isInView !== 'undefined'){   
           const newArr = isInView.filter(elem =>  elem.name !== myType);

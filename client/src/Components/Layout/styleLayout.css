@@ -1,293 +1,310 @@
 *{
-  box-sizing: border-box;
-}
-.navbar{
-  width:100%;
-  display: flex;
-  align-items: center;
-  background-color: #48416b;
-  flex-direction: row;
-}
-.logo,.links{
-  width: 100%;
-}
-.logo{
-  min-width: 100px;
-}
-@media screen and (max-width:300px) {
-  .logo{
-    display: none;
+    box-sizing: border-box;
   }
-}
+  .navbar{
+    width:100%;
+    display: flex;
+    align-items: center;
+    background-color: #48416b;
+    flex-direction: row;
 
-.links{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}  
-.firstLinks{
-  margin-right: 0.5rem;
-  background-color: #112255;
-  color:rgb(155, 155, 155);  
-  border-radius: 40px;
-  width:30%;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  }  
- .larger{
-  width:60%;
- }
- .smaller{
-  width:30%;
+  }
+  .logo,.links{
+    width: 100%;
+  }
+  .logo{
+    min-width: 100px;
+  }
+  @media screen and (max-width:300px) {
+    .logo{
+      display: none;
+    }
+  }
   
- }
-  .ulList{
-    width: 90%;
-    margin:0 auto;
-    list-style: none;
+  .links{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
-    padding:10px;
   }  
-  .ulList li{
-    margin:0 0.5rem;
+  .firstLinks{
+    margin-right: 0.5rem;
+    background-color: #112255;
+    color:rgb(155, 155, 155);  
+    border-radius: 40px;
+    width:30%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    }  
+   .larger{
+    width:60%;
+   }
+   .smaller{
+    width:30%;
+    
+   }
+    .ulList{
+      width: 90%;
+      margin:0 auto;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding:10px;
+    }  
+    .ulList li{
+      margin:0 0.5rem;
+    }
+  /* .smaller{
+    width:40%;
   }
-/* .smaller{
-  width:40%;
-}
-.larger{
-  width:80%;
-} */
+  .larger{
+    width:80%;
+  } */
 
 
 .firstLinksContainer{
-margin-left: 0.5rem;
-background-color: #112255;
-border-radius: 40px;
-display: flex;
-align-items: center;
-justify-content: space-around;
-position: relative;
-width: 25%;
+  margin-left: 0.5rem;
+  background-color: #112255;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  width: 25%;
 }
 
 .link{
-color: white;
-text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 .imgLink{
-height: 50px;
-width: 50px;
+  height: 50px;
+  width: 50px;
 }
 .userImage{
-width: 40px;
-height: 40px;
+  width: 40px;
+  height: 40px;
 }
 @keyframes changeLinkColor {
-0%{
-  color:white;
-}
-100%{
-  color: #4662a9;
-}
+  0%{
+    color:white;
+  }
+  100%{
+    color: #4662a9;
+  }
 }
 .link:hover{
-animation: changeLinkColor 0.5s ease forwards;
+  animation: changeLinkColor 0.5s ease forwards;
 }
 .btnContainer,.signBtnContainer{
-margin-left: 0.5rem;
-display: flex;
-justify-content: space-around;
-align-items: center;
-max-width:300px;
-min-width:100px;
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width:300px;
+  min-width:100px;
 }
 .btnContainer{
-width:10%;
+  width:10%;
 }
 .signBtnContainer{
-width: 50%;
+  width: 50%;
 }
 .signup, .signin{
-padding:15px 20px;
-color: white;
-border-radius: 20px;
-border:0;
-cursor: pointer;
+  padding:15px 20px;
+  color: white;
+  border-radius: 20px;
+  border:0;
+  cursor: pointer;
 }
 .signin{
-background-color: transparent;
-border: 1px solid #3a6cfd;
+  background-color: transparent;
+  border: 1px solid #3a6cfd;
 }
 .signin:hover{
-border-color: white;
-background-color: white;
-color:black
+  border-color: white;
+  background-color: white;
+  color:black
 }
 .signup{
-background-color: #3a6cfd;
+  background-color: #3a6cfd;
 }
 
 .signup:hover{
-background-color: white;
-color:black
+  background-color: white;
+  color:black
 }
 
 .logout{
-padding:15px 20px;
-color: white;
-background-color: red;
-border-radius: 20px;
-border:0;
-cursor: pointer;
+  padding:15px 20px;
+  color: white;
+  background-color: red;
+  border-radius: 20px;
+  border:0;
+  cursor: pointer;
 }
 .logout:hover{
-border: 0;
-background-color: white;
-color:red
+  border: 0;
+  background-color: white;
+  color:red
 }
 
 @media screen and (max-width:1348px) {
-.ulList{
-  font-size: 0.8rem;
-}
+  .ulList{
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width:450px) {
-.firstLinks{
-  width: 98%;
-  margin: 0 0;
-}
-.ulList{
-  font-size: 0.8rem;
-}
+  .firstLinks{
+    width: 98%;
+    margin: 0 0;
+  }
+  .ulList{
+    font-size: 0.8rem;
+  }
 }
 
 .popupvisible{
-width:50%;
-display: block;
-position: absolute;
+  width:50%;
+  display: block;
+  position: absolute;
 }
 
 .popsettings{
-left: 20%;
-top:10px;
+  left: 20%;
+  top:10px;
 }
 .popnotif{
-left: 45%;
-top:10px;
+  left: 45%;
+  top:10px;
 }
 .popup{
-left: 60%;
-top:10px;
+  left: 60%;
+  top:10px;
 }
 .layoutPupop{
-background-color: white;
-box-shadow: 1px 1px 2px rgb(32, 32, 32),-1px 1px 2px rgb(32, 32, 32),1px -1px 2px rgb(32, 32, 32),-1px -1px 2px rgb(32, 32, 32);
+  background-color: white;
+  box-shadow: 1px 1px 2px rgb(32, 32, 32),-1px 1px 2px rgb(32, 32, 32),1px -1px 2px rgb(32, 32, 32),-1px -1px 2px rgb(32, 32, 32);
 }
 
 .notif,.settings{
-cursor: pointer;
+  cursor: pointer;
 }
 .notif:hover ,.settings:hover{
-fill:#3a6cfd;
+  fill:#3a6cfd;
 }
 .userImage{
-object-fit: cover;
-cursor: pointer;
-width: 20px;
-height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
 
 
 .hamburger{
-display: none;
-width: 25%;
+  display: none;
+  width: 25%;
 
 }
 
 @keyframes movemenu {
-0%{
-  left:100%;
-}
-100%{
-  left:50%;
-}
+  0%{
+    left:100%;
+  }
+  100%{
+    left:50%;
+  }
 }
 
 .line{
-margin: 0.2rem 0;
-display: block;
-width: 30%;
-height: 5px;
-background-color: white;
+  margin: 0.2rem 0;
+  display: block;
+  width: 30%;
+  height: 5px;
+  background-color: white;
 }
 
 .dropdowninvisible{
-display: none;
+  display: none;
 }
 .dropdownvisible{
-top:0%;
-display: flex;
-flex-direction: column;
-height: 90vh;
-width: 50vw;
-background-color: rgb(255, 255, 255);
-box-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
-position: absolute;
-animation: movemenu 1s forwards;
-overflow: hidden;
+  top:0%;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 50vw;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
+  position: absolute;
+  animation: movemenu 1s forwards;
+  overflow: hidden;
 }
 
 
 
 .menuparag{
-text-align: center;
-margin: 1rem 0;
-color:black;
-text-decoration: none;
+  text-align: center;
+  margin: 1rem 0;
+  color:black;
+  text-decoration: none;
 }
 .blackLink{
-text-decoration: none;
+  text-decoration: none;
 }
-@media screen and (max-width:1000px) {
-.hamburger{
+.linksexist{
+  width: 100%;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 }
-.links{
-  flex-direction: row-reverse;
-}
-.navbar{
-  flex-direction: column;
-}
-.logo,.links{
-  width: 90%;
-     
-}
-.firstLinks{
- display: none;
+@media screen and (max-width:700px) {
+  .hamburger{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 
-}
-.firstLinksContainer{
-  display: none;
-}
-.btnContainer{
-  width: 60%;
-  margin:1rem 0;
-}
-.ulList{
-  font-size: 1rem;
-}
+  .navbar{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .logo,.links,.linksexist{
+    width: 90%;
+       
+  }
+  .linksexist{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .firstLinks{
+   display: none;
+  
+  }
+  .firstLinksContainer{
+    display: none;
+  }
+  .btnContainer{
+    width: 60%;
+    margin:1rem 0;
+  }
+  .ulList{
+    font-size: 1rem;
+  }
+  
 }
 @media screen and (max-width:450px) {
-.ulList{
-  font-size: 0.6rem;
+  .ulList{
+    font-size: 0.6rem;
+  }
 }
-}
+
+

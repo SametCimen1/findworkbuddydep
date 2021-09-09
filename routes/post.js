@@ -5,50 +5,49 @@ const checkAuth = require('./verifyToken');
 router.use(cookieParser());
 
 router.post('/newpost', checkAuth, async(req,res) =>{
-    const {_id} = req.user; 
-    const id = _id; 
-  
-      if(typeof id !== undefined){
-      const imageUser = await pool.query("SELECT image, name FROM users  WHERE id = $1", [id])
-      const image = imageUser.rows[0].image;
-      const username = imageUser.rows[0].name;
-      const words = req.body.keywords;
-      const addWord = words.trim();
-      const wordsArr = addWord.split(' ');
-      const dateObj = new Date();
-  
-      const year = dateObj.getFullYear();
-      const month = dateObj.getMonth() + 1;
-      const day = dateObj.getDate();
-      const seconds = dateObj.getSeconds();
-      const minutes = dateObj.getMinutes();
-      const hour = dateObj.getHours();
-      const currentTime = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`
-  
-       const user = await pool.query("INSERT INTO posts(userId, image, header, paragraph, keywords, likes, commentby, uploadtime, username) VALUES($1,$2,$3,$4,$5,$6,$7, $8, $9)",[id, image, req.body.header, req.body.paragraph, wordsArr, 0,[], currentTime,username]);
-      if(user){
-        res.json(true)
-      }
-      else{
-        res.json(false);
-      }
-      
-      }
-    })
-    
-    const getSinglePost = async(id) =>{
-      const post = await pool.query(`SELECT * FROM posts WHERE id = $1`, [id]);
-      return post.rows[0];
+  const {_id} = req.user; 
+  const id = _id; 
+
+    if(typeof id !== undefined){
+    const imageUser = await pool.query("SELECT name FROM users  WHERE id = $1", [id])
+    const username = imageUser.rows[0].name;
+    const words = req.body.keywords;
+    const addWord = words.trim();
+    const wordsArr = addWord.split(' ');
+    const dateObj = new Date();
+
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    const seconds = dateObj.getSeconds();
+    const minutes = dateObj.getMinutes();
+    const hour = dateObj.getHours();
+    const currentTime = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`
+
+     const user = await pool.query("INSERT INTO posts(userId, header, paragraph, keywords, likes, commentby, uploadtime, username) VALUES($1,$2,$3,$4,$5,$6,$7, $8)",[id, req.body.header, req.body.paragraph, wordsArr, 0,[], currentTime,username]);
+    if(user){
+      res.json(true)
     }
-    router.post('/getpost', async(req,res) =>{
-     const post = await getSinglePost(req.body.id);
-     if(post){
-         res.json(post);
-     }
-     else{
-         res.json("no post found")
-     }
-    })
+    else{
+      res.json(false);
+    }
+    
+    }
+  })
+  
+  const getSinglePost = async(id) =>{
+    const post = await pool.query(`SELECT * FROM posts WHERE id = $1`, [id]);
+    return post.rows[0];
+  }
+  router.post('/getpost', async(req,res) =>{
+   const post = await getSinglePost(req.body.id);
+   if(post){
+       res.json(post);
+   }
+   else{
+       res.json("no post found")
+   }
+  })
     router.post('/getuserposts', checkAuth,async(req,res) =>{
       const userid = req.body.userid;
       const posts = await pool.query('SELECT * FROM posts WHERE userid = $1', [userid])
@@ -105,7 +104,16 @@ router.post('/newpost', checkAuth, async(req,res) =>{
         }
       }
     })
-  
+    router.post('/getimg', checkAuth, async(req,res) =>{
+      const id = req.body.userid;
+      const user = await pool.query('SELECT image FROM users WHERE id = $1', [id])
+      if(user.rowCount>0){
+        res.json(user.rows[0])
+      }
+      else{
+        res.json('');
+      }
+    })
     router.post('/likepost', checkAuth,async(req,res) =>{
     //  const data = await pool.query('UPDATE posts SET likes = likes + 1 WHERE id = $1', [req.body.id]);
     //  res.json('updated')

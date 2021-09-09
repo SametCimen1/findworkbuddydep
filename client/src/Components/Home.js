@@ -22,23 +22,14 @@ export default function Home() {
       .then(res => res.json()).then(res => setUser(res));
     }
     
-  
- 
-    const getView = () =>{
-      if(user === true){
-        return  <UserExist />
-      }
-      else{
-        return  <DoesntExist />
-      }
-    }
+
     useEffect(()=>{
       checkIfUserExist();
     },[])
   if(user === true){
     return (  <UserExist /> )
   }
-  if(user === false){
+  if(typeof user === 'undefined' || user === false){
     return (   <DoesntExist /> )
   }
   else{

@@ -207,6 +207,9 @@ app.post('/updateData', checkAuth, async(req,res) =>{
   else if(req.body.about === '' && req.body.name !== ''){
     await pool.query('UPDATE users SET  name = $1 WHERE id = $2', [req.body.name, req.user._id])
   }
+  if(req.files === null && req.body.newimgurl !== ''){
+    await pool.query('UPDATE USERS SET ownimg = false, image = $1 WHERE id = $2' ,[req.body.newimgurl, req.user._id])
+  }
   res.redirect(`http://localhost:3000/user/${req.user._id}`);
 })
 const uploadImg = async(files, id) => {

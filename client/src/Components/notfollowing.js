@@ -1,5 +1,6 @@
 import ShortPost from './ShortPost';
 import styles from '../styles/profileStyle.module.css';
+import { useHistory } from "react-router-dom";
 
 import {useState, useEffect} from 'react';
 export default function NotFollowing({myUser}){
@@ -7,7 +8,9 @@ export default function NotFollowing({myUser}){
   const [posts, setPosts] = useState();
   const user = myUser.user;
   const id = myUser.id;
-/*
+  const history = useHistory();
+  const [sendReq, setSendReq] = useState(false);
+  /*
   about: "Hello I am 16"
 followers: 0
 following: 0
@@ -25,6 +28,7 @@ ownimg: true
         credentials: 'include', // Don't forget to specify this if you need cookies
         body:JSON.stringify({id:id})
     })
+    setSendReq(true);
   }
   const getPosts = async() =>{
     const data = await fetch('/post/getuserposts', {
@@ -92,6 +96,11 @@ ownimg: true
                 </div>
             )
       }
+      {sendReq && (
+        <div className = {styles.sendReq}>
+          <p className = {styles.sendP}>Follow Request sent successfully</p>
+        </div>
+      )}
 
     </div>
   )

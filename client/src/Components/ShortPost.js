@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import '../styles/postStyle.css';
 export default function Post({post}){
     const history = useHistory();
-     
+     const [img, setImg] = useState('');
      
     useEffect(()=>{
        setMyPost(post)
@@ -19,7 +19,10 @@ export default function Post({post}){
 
     const [myPost, setMyPost] = useState(null);
     useEffect(()=>{
-        if(myPost !== null) getTime();
+        if(myPost !== null){ 
+            getTime();
+            getImg();
+        }
     },[myPost])
 
 
@@ -42,7 +45,24 @@ export default function Post({post}){
             }
     }
 
+    const getImg = async() =>{
+      const userId = post.userid;
+      const data = await fetch('/post/getimg', {
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          credentials: 'include', // Don't forget to specify this if you need cookies
+          body:JSON.stringify({userid:userId})
+      })
+      const response = await data.json();
+      setImg(response.image);
     
+    
+    }
+
+
     const isLiked = async() =>{
         const data = await fetch('/post/didlike',{
             method:"POST",
@@ -96,10 +116,12 @@ export default function Post({post}){
         <div className = "post">
          <div className = "userInfo">
                    <div className = "imgAndNameContainer">
-                       {myPost.image.includes("http") ? 
-                       <img  src = {myPost.image} className = "userImage"/>
+                       {img.includes("http") ? 
+                       <img  src = {img} className = "userImage"/>
                        :
-                       <img src = {`/img/${myPost.image}`}  className = "userImage"/>}
+                       <img src = {`/img/${img}`}  className = "userImage"/>}
+  
+
                        
                         {/* <img src = {`http://localhost:5000/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
                         <div className = "nameContainer">
