@@ -10,8 +10,9 @@ module.exports = async function(req,res,next){
     return res.status(401).send('access denied');
   }
   try {
-         const decoded = Buffer.from(token, 'base64').toString();       
-         const verified = jwt.verify(decoded, process.env.TOKENSECRET);
+    console.log('token')
+    console.log(token)
+    const verified = jwt.verify(token, process.env.TOKENSECRET);
           req.user = verified;
          next();
   

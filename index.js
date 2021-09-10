@@ -54,6 +54,8 @@ app.post('/userexist', async(req,res) =>{
     return res.json(false); 
   }
   else{
+   console.log('token')
+   console.log(token)
     const verified = jwt.verify(token, process.env.TOKENSECRET);
 
     try {
