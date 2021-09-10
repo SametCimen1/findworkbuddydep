@@ -16,6 +16,7 @@ export default function LongPost(){
     const [post, setPost] = useState(null);
     const [comment, setComment] = useState('');
     const [myImage, setMyImage] = useState();
+    const [img, setImg] = useState('');
     useEffect(()=>{
         if(post !== null) getTime();
     },[post])
@@ -53,7 +54,24 @@ export default function LongPost(){
 
     useEffect(()=>{
        isLiked();
+       getImg();
     },[post])
+    const getImg = async() =>{
+        const userId = post.userid;
+        const data = await fetch('/post/getimg', {
+          method:"POST",
+          headers: {
+              'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            credentials: 'include', // Don't forget to specify this if you need cookies
+            body:JSON.stringify({userid:userId})
+        })
+        const response = await data.json();
+        setImg(response.image);
+      
+      
+      }
 
     const isLiked = async() =>{
     if(post !== null){
@@ -202,10 +220,10 @@ export default function LongPost(){
   
 
    useEffect(()=>{
-       if(post !== null ){
+       if(img !== null ){
                 let urlImage = '';             
                 for(let i = 0; i < 4; i++){
-                urlImage += post.image[i] 
+                urlImage += img[i] 
                 }
                 if(urlImage === 'http'){
                 setMyImage(false);
@@ -214,14 +232,14 @@ export default function LongPost(){
                 setMyImage(true);
                 }
         }
-   },[post])
+   },[img])
    
     if(post !== null){
         return(
             <div className = "LongPost">
              <div className = "userInfo">
                        <div className = "imgAndNameContainer">
-                           {myImage ? <img src = {`http://localhost:5000/img/${post.image}`} className = "userImage"/> : <img src = {post.image} className = "userImage"/>}
+                           {myImage ? <img src = {`http://localhost:5000/img/${img}`} className = "userImage"/> : <img src = {img} className = "userImage"/>}
                             
                             <div className = "nameContainer">
                                 <p className = "userName">Samet</p>
