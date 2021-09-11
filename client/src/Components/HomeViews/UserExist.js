@@ -96,6 +96,7 @@ export default function UserExist(){
                             <button className = "createPostBtn" onClick = {(e)=> setCreatePost(prev => !prev)}>Create new post</button>
                         </div>
                     </div>
+                    {posts.length === 0 ? (<h1 className = 'nopost'>No Post avaible</h1>) : ''}
                     {createPost && 
                     <div className = "newPost">                          
                           <div className = "searchPost">

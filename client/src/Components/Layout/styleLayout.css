@@ -22,9 +22,11 @@
   }
   
   .links{
+  
     display: flex;
     justify-content: space-around;
     align-items: center;
+
   }  
   .firstLinks{
     margin-right: 0.5rem;
@@ -70,10 +72,11 @@
   background-color: #112255;
   border-radius: 40px;
   display: flex;
+  padding:5px 5px;
   align-items: center;
-  justify-content: space-around;
   position: relative;
-  width: 25%;
+  
+
 }
 
 .link{
@@ -209,6 +212,8 @@
   display: none;
   width: 25%;
 
+
+
 }
 
 @keyframes movemenu {
@@ -216,7 +221,7 @@
     left:100%;
   }
   100%{
-    left:50%;
+    left:49%;
   }
 }
 
@@ -224,6 +229,7 @@
   margin: 0.2rem 0;
   display: block;
   width: 30%;
+  min-width:30px;
   height: 5px;
   background-color: white;
 }
@@ -232,14 +238,16 @@
   display: none;
 }
 .dropdownvisible{
-  top:0%;
+  top:0;
   display: flex;
   flex-direction: column;
+  position: fixed;
   height: 90vh;
   width: 50vw;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
-  position: absolute;
+
+  
   animation: movemenu 1s forwards;
   overflow: hidden;
 }
@@ -263,6 +271,7 @@
 }
 @media screen and (max-width:700px) {
   .hamburger{
+    
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -291,6 +300,7 @@
   }
   .firstLinksContainer{
     display: none;
+
   }
   .btnContainer{
     width: 60%;
@@ -299,7 +309,15 @@
   .ulList{
     font-size: 1rem;
   }
-  
+  .links{
+    flex-direction: row-reverse;
+  }
+  .btnContainer{
+    width: 0;
+  }
+  .logout{
+   margin-left: 0;
+  }
 }
 @media screen and (max-width:450px) {
   .ulList{
@@ -308,3 +326,22 @@
 }
 
 
+
+.closeMenu{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media screen and (max-width:900px) {
+   .logo{
+     width: 60%;
+   }
+   .links{
+     width: 30%;
+   }
+}
+.links{
+  width: 40%;
+}

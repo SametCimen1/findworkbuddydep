@@ -29,12 +29,13 @@ export default function User({id}){
     /**
      {ownimg:user.ownimg,about:user.about, isItme:intId === myId,name:user.name, following:user.following.length,followers:user.followers.length,image:user.image, role:user.role};
      */
-
+     {console.log("user")}
+     {console.log(user)}
      if(typeof user !== 'undefined'){
          return(
             <div className = {styles.container}>
             <div className = {styles.userBox} onClick = {()=> {history.push(`/user/${id}`); history.go(0)}}>
-               <img className = {styles.userImage} src = {`http://localhost:5000/img/${user.user.image}`} />
+              {user.user.ownimg ? <img className = {styles.userImage} src = {`/img/${user.user.image}`} /> : <img className = {styles.userImage} src = {user.user.image} />} 
                 <p className = {styles.userName}>{user.user.name}</p>
             </div>
         </div>

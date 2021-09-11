@@ -123,7 +123,7 @@ export default function Post({post}){
   
 
                        
-                        {/* <img src = {`http://localhost:5000/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
+                        {/* <img src = {`/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
                         <div className = "nameContainer">
                             <p className = "userName">{myPost.username}</p>
                             <p>{time} {timeUnit} ago</p>
