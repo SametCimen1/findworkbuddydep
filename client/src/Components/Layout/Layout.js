@@ -22,6 +22,8 @@ export default function Layout({children}) {
         credentials: 'include',
       });
       const res = await doesTokenExist.json();
+      console.log("USER EXIST")
+      console.log(res)
       if(res){
         const data = await fetch("http://localhost:5000/getuser", 
         {
@@ -36,7 +38,10 @@ export default function Layout({children}) {
           if(err.status === 401){
             setUser(); 
           }
-        }); 
+        });
+        const res2 = await data.json(); 
+        console.log("GET USER")
+        console.log(res2);
       }
       else{
         setUser()
