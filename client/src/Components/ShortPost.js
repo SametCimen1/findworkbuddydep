@@ -117,9 +117,9 @@ export default function Post({post}){
          <div className = "userInfo">
                    <div className = "imgAndNameContainer">
                        {img.includes("http") ? 
-                       <img onClick = {() => history.push(`/user/${myPost.id}`)} src = {img} className = "userImage"/>
+                       <img  src = {img} className = "userImage"/>
                        :
-                       <img  onClick = {() =>history.push(`/user/${myPost.id}`)} src = {`/img/${img}`}  className = "userImage"/>}
+                       <img   src = {`/img/${img}`}  className = "userImage"/>}
   
 
                        
