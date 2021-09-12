@@ -128,7 +128,7 @@ margin-right: -20px;
     background-size:2900%;
   }
   .heartactive{
-    animation: heart-burst .8s steps(28) 1;
+    animation: heart-burst .8s steps(28) 1 forwards;
   }
   @keyframes heart-burst {
     from {background-position:left;}
