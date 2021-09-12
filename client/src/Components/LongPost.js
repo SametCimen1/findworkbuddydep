@@ -241,7 +241,7 @@ export default function LongPost(){
              <div className = "userInfo">
              <div className = "imgAndNameContainer">
                 {console.log(myImage)}
-                           {myImage && <img onClick = {() => history.push(`/user/${post.id}`)} src = {`/img/${img}`} className = "userImage"/>}
+                           {/* {myImage && <img onClick = {() => history.push(`/user/${post.id}`)} src = {`/img/${img}`} className = "userImage"/>} */}
                            {!myImage &&  <img src = {img} className = "userImage"/>}
                             
                             <div className = "nameContainer">
