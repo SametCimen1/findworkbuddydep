@@ -1,5 +1,6 @@
 
 .post{
+
     width: 70%;
     max-width: 400px;
     text-align: left;
@@ -8,6 +9,7 @@
     border: 1px solid black;
     padding:10px;
     border-radius: 10px;
+    min-width: 200px;
 }
 
 .userInfo{

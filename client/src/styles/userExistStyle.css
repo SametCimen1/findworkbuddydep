@@ -141,6 +141,9 @@
     .sortContainer{
         width: 90%;
     }
+    .createPost{
+        margin-top: 2rem;
+    }
 }
 .sort:focus{
   outline: none;
@@ -153,6 +156,7 @@
    border-radius: 5px;
    color:white;
    cursor: pointer;
+
 }
 .createPostBtn:hover{
     background-color: #97b6ff;
@@ -214,11 +218,7 @@
     color:white;
     border:1px solid #A7AFC3;
 }
-@media screen and (max-width:550px) {
-    .existBtnContainer{
-        justify-content: center;
-    }
-}
+
 .userImage{
     width: 50px;
     height:50px;
@@ -232,6 +232,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .invisible{
     display: none;
 }
@@ -277,4 +278,11 @@
     .searchBtn{
         width: 90%;
     }
+}
+@media screen and (max-width:550px) {
+    .existBtnContainer{
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
 }

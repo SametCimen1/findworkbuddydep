@@ -190,6 +190,14 @@
 }
 .postsContainer{
     display: flex;
+ flex-wrap: wrap;
+
+}
+@media screen and (max-width:500px) {
+    .postsContainer{
+       justify-content: center;       
+    }
+    
 }
 .aboutContainer{
     background-color: white;
