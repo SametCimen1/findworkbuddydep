@@ -240,7 +240,7 @@ export default function LongPost(){
             <div className = "LongPost">
              <div className = "userInfo">
              <div className = "imgAndNameContainer">
-                           {myImage ? <img src = {`/img/${img}`} className = "userImage"/> : <img src = {img} className = "userImage"/>}
+                           {myImage ? <img onClick = {() => history.push(`/user/${post.id}`)} src = {`/img/${img}`} className = "userImage"/> : <img src = {img} className = "userImage"/>}
                             
                             <div className = "nameContainer">
                                 <p className = "userName">{post.username}</p>
@@ -292,7 +292,7 @@ export default function LongPost(){
                    (typeof elem.userimg !== 'undefined' && (
                     <div className = "commentContainer">
                        <div className = "commentNameContainer"> 
-                          <img src =  {`/img/${elem.userimg}`} className = "commentImage"/>
+                          <img  onClick = {() => history.push(`/user/${elem.id}`)} src =  {`/img/${elem.userimg}`} className = "commentImage"/>
                           <p className = "userName m">{elem.username}</p>
                           <p className = "LonguserParagraph">{elem.text}</p>
                           {myId === elem.userid ? <button onClick = {()=> deleteComment(elem.id)} className = "dltBtn">Delete</button> :''}
