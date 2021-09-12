@@ -62,7 +62,7 @@ router.post('/signup', async(req,res) => {
         from: 'cimensamet338@gmail.com',
         to: req.body.email,
         subject: 'Find Work Buddy Verification code',
-        text: `click this link to verify your account http://findworkbuddydeploy.herokuapp.com/verify/${confirmURL}`
+        text: `click this link to verify your account https://findworkbuddydeploy.herokuapp.com/verify/${confirmURL}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){
