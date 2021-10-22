@@ -33,3 +33,14 @@ cursor: pointer;
 @media screen  and (max-width:440px){
     
 }
+.okBtn{
+    margin-left: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #677698;
+}
+.okBtn:hover{
+     background-color: #677698;
+     color:white
+}

@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet'
 import {  useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
@@ -29,8 +30,7 @@ export default function UserId(){
     
     if(user){
         const newUser = {user:user, id:id}
-        console.log("is friend")
-        console.log(user.friend);
+
         
     if(user.friend){
         return <Following myUser = {newUser}/>}

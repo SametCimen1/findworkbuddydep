@@ -112,6 +112,9 @@ export default function Signup(){
 
     return (
       <div className = "container">
+                       <Helmet>
+            <title>Sign up Find Work Buddy </title>
+          </Helmet>
         <div className ="formAndTextContainer">
           <div className = "signUpText">
           <h2>Sign up <span>findworkbuddy is totally free!</span></h2>

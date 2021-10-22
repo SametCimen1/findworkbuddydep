@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import {useEffect, useState} from 'react'
@@ -36,7 +37,7 @@ export default function Signup(){
   const history = useHistory();
 
   const login = async(e) =>{
-    console.log("OKKKK")
+
     e.preventDefault();
     const data = await fetch("/api/user/signin", {  
     method:"POST",
@@ -48,7 +49,7 @@ export default function Signup(){
     credentials: 'include', // Don't forget to specify this if you need cookies
     body: JSON.stringify({password:password, email:email})
     })
-    console.log("fetch finished")
+
 
     if(data.status === 200){
       history.push("/");
@@ -125,6 +126,9 @@ export default function Signup(){
   
     return (
       <div className = "container">
+                       <Helmet>
+            <title> Sign in Find Work Buddy </title>
+          </Helmet>
       <div className ="formAndTextContainer">
         <div className = "signUpText">
         <h2>Sign up <span>findworkbuddy is totally free!</span></h2>

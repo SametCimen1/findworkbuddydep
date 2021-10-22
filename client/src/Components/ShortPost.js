@@ -6,6 +6,7 @@ export default function Post({post}){
      const [img, setImg] = useState('');
      
     useEffect(()=>{
+
        setMyPost(post)
        isLiked()     
     },[])
@@ -36,8 +37,16 @@ export default function Post({post}){
             const minutes = Math.floor((difference/1000)/60);
             if(minutes > 60){
                 const hours = Math.floor(minutes/60);
+                if(hours > 24){
+                    const days = Math.floor(hours/24);
+                    setTime(days)
+                    setTimeUnit("day")
+                }
+                else{
                 setTime(hours)
                 setTimeUnit("hours")
+                }
+               
             }
             else{
                 setTime(minutes);
@@ -57,7 +66,14 @@ export default function Post({post}){
           body:JSON.stringify({userid:userId})
       })
       const response = await data.json();
-      setImg(response.image);
+      if(response.image === null){
+          setImg("null")
+      }
+      else{
+        setImg("response.image");
+      }
+
+    
     
     
     }
@@ -92,7 +108,7 @@ export default function Post({post}){
             setMyPost(response)
         }
         else{
-            console.log('liking')
+
             const data = await fetch('/post/likepost',{
                 method:"POST",
                 headers: {
@@ -116,14 +132,15 @@ export default function Post({post}){
         <div className = "post">
          <div className = "userInfo">
                    <div className = "imgAndNameContainer">
-                       {img.includes("http") ? 
-                       <img  src = {img} className = "userImage"/>
+                       {( img === "null" && !img.includes("http")) ?    
+                       <img onClick = {()=> history.push(`/user/${post.userid}`)}  src = "/default.svg" className = "userImage"/>
                        :
-                       <img   src = {`/img/${img}`}  className = "userImage"/>}
+                       <img  onClick = {()=> history.push(`/user/${post.userid}`)}   src = {`/img/${img}`}  className = "userImage"/>
+                       }
   
 
                        
-                        {/* <img src = {`/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
+                        {/* <img src = {`http://localhost:5000/img/${myPost.image}`} onClick = {history.push(`/user/${post.userid}`)} className = "userImage"/> */}
                         <div className = "nameContainer">
                             <p className = "userName">{myPost.username}</p>
                             <p>{time} {timeUnit} ago</p>

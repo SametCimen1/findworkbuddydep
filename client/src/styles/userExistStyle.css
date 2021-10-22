@@ -71,7 +71,7 @@
     border: 2px solid #000000d5;
     padding:10px;
     max-height: 1000px;
-    max-width: 2000p x;
+    max-width: 2000px;
 }
 
 
@@ -141,8 +141,20 @@
     .sortContainer{
         width: 90%;
     }
-    .createPost{
+    .createPostBtn{
         margin-top: 2rem;
+    }
+    .searchPost{
+        flex-direction: column;
+        width: 95%;
+        margin: 1rem auto;
+    }
+    .INheader{
+        width: 100%;
+    }
+    .INkey{
+        width: 100%;
+        margin: 2rem 0;
     }
 }
 .sort:focus{
@@ -156,7 +168,6 @@
    border-radius: 5px;
    color:white;
    cursor: pointer;
-
 }
 .createPostBtn:hover{
     background-color: #97b6ff;
@@ -218,7 +229,11 @@
     color:white;
     border:1px solid #A7AFC3;
 }
-
+@media screen and (max-width:550px) {
+    .existBtnContainer{
+        justify-content: center;
+    }
+}
 .userImage{
     width: 50px;
     height:50px;
@@ -232,7 +247,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .invisible{
     display: none;
 }
@@ -264,6 +278,11 @@
     margin-bottom: 2rem;
 }
 
+.scPost{
+    text-align: center;
+    color:rgb(0, 160, 0);
+    font-size: 2rem;
+}
 @media screen and (max-width:600px) {
     .search {
        flex-direction: column;
@@ -278,11 +297,10 @@
     .searchBtn{
         width: 90%;
     }
-}
-@media screen and (max-width:550px) {
-    .existBtnContainer{
-        justify-content: center;
-        margin-top: 1rem;
+    .scPost{
+        font-size: 1rem;
     }
-
+    .henryText{
+        font-size: 1rem;
+    }
 }

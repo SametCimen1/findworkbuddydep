@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet'
 import NewComment from './NewComment'
 import styles from '../styles/profileStyle.module.css';
 import {useState, useEffect} from 'react';
@@ -57,7 +58,7 @@ export default function Profile({myUser}){
               credentials: 'include', // Don't forget to specify this if you need cookies
               body:JSON.stringify({id:id})
             });
-            console.log("RETUNED")
+
           const response = await data.json();
           history.go(0);
       }
@@ -113,12 +114,15 @@ export default function Profile({myUser}){
     }
     return(
         <div className = {styles.bgcolor} >
+               <Helmet>
+            <title>Find Work Buddy </title>
+          </Helmet>
             <div className = {styles.imgContainer}>
               <div className =  {styles.imgAndName} > 
                       {user.user.ownimg ? 
                     <img src = {`/img/${user.user.image}`} alt = "profile img  of the user" className = {styles.userimg}/>
                     :
-                    <img src = {user.user.image} alt = "profile img  of the user" className = {styles.userimg}/>
+                    <img src = "/default.svg" alt = "profile img  user" className = {styles.userimg}/>
                 }
                
                 <div className = {styles.nameFollowers}>
@@ -171,20 +175,33 @@ export default function Profile({myUser}){
                 <div className = {styles.editContainer}>
                     <form 
       id='uploadForm' 
-      action='/updateData' 
+      action='http://updateData' 
       method='post' 
       encType="multipart/form-data">
                         <div className = {styles.inputContainer}>
                         <div className = {styles.newImgContainer}>
                           <input type = "file" name = "newimg"  className = {styles.newImageFile}/>
-                          <p>or paste url</p>
-                          <input type = "text" name = "newimgurl"  className = {styles.newImage}/>
+                          {/* <p>or paste url</p>
+                          <input type = "text" name = "newimgurl"  className = {styles.newImage}/> */}
                         </div>
-                        <input type = "text" className = {styles.aboutInput} name = "about" value = {about} onChange = {(e)=> setAbout(e.target.value)} placeholder = "about" />
-                        <input type = "text"className = {styles.nameInput}  name = "name" value = {name} onChange = {(e)=> setName(e.target.value.toLowerCase())} placeholder = "name" />
+                        <input type = "text" className = {styles.aboutInput} name = "about" value = {about} onChange = {(e)=> setAbout(e.target.value)} placeholder = "update about" />
+                        <input type = "text"className = {styles.nameInput}  name = "name" value = {name} onChange = {(e)=> setName(e.target.value.toLowerCase())} placeholder = "update name" />
+                        {/* <input className =  {styles.deleteImage} type = ''></input> */}
                         <input className = {styles.uploadInput} type='submit' value='Upload!' />
+                        <button className = {styles.deleteImage} onClick = {async() => {await fetch('/deleteuserimage',{
+                          method: "POST",
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          redirect: 'follow',
+                          credentials: 'include', // Don't forget to specify this if you need cookies                          
+                        })}} name = "dltImage">Delete user Image</button>
                         </div>
+                    
                     </form>
+     
+                     
+
                 </div> 
             )}
 
@@ -194,9 +211,8 @@ export default function Profile({myUser}){
                 <div>
                     <p className = {styles.option}>notifications</p>
                     {(newComments !== null && newComments.length >= 0) ?  newComments.map(id => (
-                      <div className = {styles.newCommentContainer}>
-                        <NewComment id = {id}  key = {id}/>
-                        <button className = {styles.okBtn} onClick = {()=>deleteNewComment(id)}>OK</button>
+                      <div className = {styles.newCommentContainer} key = {id}>
+                        <NewComment id = {id}  key = {id} clickFund = {deleteNewComment}/>
                       </div>
                     )): <p className = {styles.none}>No new Comment</p>}
                     {followReq.length <= 0 ? <p className = {styles.none}>No new follow Request</p>:followReq.map(id => (
@@ -218,7 +234,7 @@ export default function Profile({myUser}){
                       {followers.length === 0 ? <p className = {styles.none}>No followers</p> : followers.map(id => 
                       <div className = {styles.followingContainer}>
                         <User id = {id} key = {id}/>
-                        {/* <button  className = {styles.massege}>Massege</button> */}
+                        <button  className = {styles.massege}>Massege</button>
                       </div>
                       )}
                     
@@ -236,7 +252,7 @@ export default function Profile({myUser}){
                     <div className = {styles.followingContainer}>
                        <User id = {id} key = {id}/>
                        <div className = {styles.btnContainer}>
-                         {/* <button  className = {styles.massege}>Massege</button> */}
+                         <button  className = {styles.massege}>Massege</button>
                          <button className ={styles.unfollow}onClick = {()=> unfollow(id)}>Unfollow</button>
                        </div>
                     </div>

@@ -19,7 +19,7 @@ export default function UserExist(){
     return(
         <div>
           <Helmet>
-            <title>Home</title>
+            <title>Find Work Buddy</title>
           </Helmet>
          <main>
            <section className = "homeMain" style = {{backgroundImage:"url(/home.jpg)"}}>
@@ -133,7 +133,7 @@ export default function UserExist(){
               <ul className = "followMenu">
                 <a href = "https://twitter.com/findworkbuddy"><img className = "icon" src = "/twitter.svg" /></a>
                 <a href = "https://twitter.com/findworkbuddy"><img className = "icon" src = "/facebook.svg" /></a>
-                {/* <a href = "https://www.instagram.com/findworkbuddy/"><img className = "icon" src = "/instagram.svg" /></a> */}
+                <a href = "https://www.instagram.com/findworkbuddy/"><img className = "icon" src = "/instagram.svg" /></a>
               </ul>
             </div>
           </footer>

@@ -40,7 +40,7 @@
     justify-content: space-around;
     }  
    .larger{
-    width:60%;
+    width:0%;
    }
    .smaller{
     width:30%;
@@ -70,9 +70,9 @@
 .firstLinksContainer{
   margin-left: 0.5rem;
   background-color: #112255;
-  border-radius: 40px;
+  border-radius: 20px;
+  padding:5px;
   display: flex;
-  padding:5px 5px;
   align-items: center;
   position: relative;
   
@@ -213,15 +213,14 @@
   width: 25%;
 
 
-
 }
 
 @keyframes movemenu {
   0%{
-    left:100%;
+    top:-100%;
   }
   100%{
-    left:49%;
+    top:0;
   }
 }
 
@@ -238,21 +237,35 @@
   display: none;
 }
 .dropdownvisible{
-  top:0;
+  left:0;
   display: flex;
   flex-direction: column;
   position: fixed;
-  height: 90vh;
-  width: 50vw;
+  height: 50vh;
+  width: 100vw;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 1px black,-1px -1px 1px black,1px -1px 1px black,-1px 1px 1px black;
-
   
   animation: movemenu 1s forwards;
   overflow: hidden;
 }
 
+.dropdownClose{
+  background-color: transparent;
+  border: 1px solid black;
+  position: absolute;
+  bottom:0;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 20%;
+  min-width: 100px;
+  text-align: center;
+  color:red;
+  font-size: 1.5rem;
 
+}
 
 .menuparag{
   text-align: center;
@@ -271,7 +284,6 @@
 }
 @media screen and (max-width:700px) {
   .hamburger{
-    
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -286,7 +298,6 @@
   }
   .logo,.links,.linksexist{
     width: 90%;
-       
   }
   .linksexist{
     display: flex;
@@ -318,6 +329,14 @@
   .logout{
    margin-left: 0;
   }
+  .logo{
+    padding:0;
+    margin: 0;
+    width: 90%;
+  }
+  .logo img{
+    width: 90%;
+  }
 }
 @media screen and (max-width:450px) {
   .ulList{
@@ -334,14 +353,21 @@
   cursor: pointer;
 }
 
-@media screen and (max-width:900px) {
+/* @media screen and (max-width:900px) {
    .logo{
-     width: 60%;
+     width: 40%;
    }
    .links{
-     width: 30%;
+     width: 60%;
    }
+} */
+
+.closeanimation{
+  background-color: red;
 }
-.links{
-  width: 40%;
+.hamdropdown{
+  
+}
+.noMargin{
+  margin-right: 0 !important; 
 }

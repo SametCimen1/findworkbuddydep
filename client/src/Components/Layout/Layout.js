@@ -22,8 +22,6 @@ export default function Layout({children}) {
         credentials: 'include',
       });
       const res = await doesTokenExist.json();
-      console.log("USER EXIST")
-      console.log(res)
       if(res){
         const data = await fetch("/getuser", 
         {
@@ -38,8 +36,7 @@ export default function Layout({children}) {
           if(err.status === 401){
             setUser(); 
           }
-        });
-      
+        }); 
       }
       else{
         setUser()
@@ -85,6 +82,7 @@ export default function Layout({children}) {
       }
     }
 
+
       return(
         <div>
          <header >
@@ -100,23 +98,22 @@ export default function Layout({children}) {
             
     
     
-              {/* { user && <div className = {typeof user !== 'undefined' ? "firstLinks larger": "firstLinks smaller"}>
-                  <ul className = "ulList">
+              { user && <div className = {typeof user !== 'undefined' ? "firstLinks larger": "firstLinks smaller"}>
+                  {/* <ul className = "ulList">
                       <li><Link className = "link" to ="/collobarete">ask question</Link></li> 
                      <li><Link  className = "link"to ="/groups">Groups</Link></li> 
-                  </ul>    
-                </div>} */}
+                  </ul>     */}
+                </div>}
                    {/*phone view*/}
                    {typeof user !== 'undefined' && 
-                  <div className = "hamburger" onClick = {()=> setMenu(prev => !prev)}>
+                  <div className = "hamburger" onClick = {() => setMenu(prev => !prev)}> {/* co stands for close and open */}
                     <span className = "line"></span>
                     <span className = "line"></span>
                     <span className = "line"></span>
-                    <div className = "hamdropdown">
+                    <div className = "hamdropdown" >
                        <div className = {menu ? "dropdownContainer dropdownvisible": "dropdownContainer dropdowninvisible"}>
                           <Link className = "blackLink" to = "/"><p className = "menuparag">Ask Question</p></Link>
-                          <Link  className = "blackLink" to = "/groups"><p className = "menuparag">Groups</p></Link>
-                          <Link  className = "blackLink"  to = "/about"> <p className = "menuparag">About</p></Link>
+                          
                           <Link  className = "blackLink" to = "/contact"> <p className = "menuparag">Contact</p></Link>
                           <Link   className = "blackLink" to = {`/user/${user.id}`}> <p className = "menuparag">My Profile</p></Link>
                        </div>
@@ -126,23 +123,23 @@ export default function Layout({children}) {
 
                    {typeof user !== 'undefined' && 
                     <div className = "firstLinksContainer">
-                          <div className="dropdown" onClick = {dotsClicked}>
+                          {/* <div className="dropdown" onClick = {dotsClicked}>
                                 <div className = "dot dotwhite"></div>
                                 <div className = "dot dotwhite"></div>
                                 <div className = "dot dotwhite"></div>
-                          </div>
-                            <div className = {popup? 'popupvisible popup':"popupinvisible"}>
+                          </div> */}
+                            {/* <div className = {popup? 'popupvisible popup':"popupinvisible"}>
                               <div className = "layoutPupop">
                                 <h1>Edit post</h1>
                                 <h1>share post</h1>
                                 <h1>share post</h1>
                                 <h1>share post</h1>
                               </div>
-                          </div>
+                          </div> */}
                        {user.ownimg ?
-                   <img   src = {`/img/${user.image}`}  onClick={() => {history.push(`/user/${user.id}`); history.go(0)}} className = "userImage" />
+                   <img   src = {`/img/${user.image}`}  onClick={() => {history.push(`/user/${user.id}`); history.go(0)}} className = "userImage noMargin" />
                     : 
-                     < img src = {`${user.image}`} onClick={() => {history.push(`/user/${user.id}`); history.go(0)}} className = "userImage" />
+                     < img src = "/default.svg" onClick={() => {history.push(`/user/${user.id}`); history.go(0)}} className = "userImage noMargin" />
                       }
                     </div>
                   }

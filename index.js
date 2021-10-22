@@ -192,6 +192,7 @@ app.get('/getimg', checkAuth, async(req,res) =>{
   // const filename = readFiles(dirName, onFileContentFunc, ()=> {console.log("ERROR IN DIR")})
 })
 app.post('/updateData', checkAuth, async(req,res) =>{
+
   if(req.files && Object.keys(req.files).length !== 0){
     await uploadImg(req.files, req.user._id);
   }
@@ -207,16 +208,16 @@ app.post('/updateData', checkAuth, async(req,res) =>{
   if(req.files === null && req.body.newimgurl !== ''){
     await pool.query('UPDATE USERS SET ownimg = false, image = $1 WHERE id = $2' ,[req.body.newimgurl, req.user._id])
   }
-  res.redirect(`https://findworkbuddydeploy.herokuapp.com/user/${req.user._id}`);
+  res.redirect(`http://localhost:3000/user/${req.user._id}`);
 })
 const uploadImg = async(files, id) => {
   const imgName = await pool.query('SELECT image, ownimg FROM users WHERE id = $1', [id]);
-  console.log(imgName)
+
   if(imgName.rows[0].ownimg){
     fs.unlink(`${__dirname}/userimg/img/${imgName.rows[0].image}`, function (err) {
       if (err) console.log(err);
       // if no error, file has been deleted successfully
-      console.log('File deleted!');
+
     }); 
   }
 

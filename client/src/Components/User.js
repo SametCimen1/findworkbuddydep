@@ -1,3 +1,4 @@
+
 import {useState, useEffect} from 'react';
 import styles from '../styles/User.module.css'
 import { useHistory } from "react-router-dom";
@@ -29,8 +30,7 @@ export default function User({id}){
     /**
      {ownimg:user.ownimg,about:user.about, isItme:intId === myId,name:user.name, following:user.following.length,followers:user.followers.length,image:user.image, role:user.role};
      */
-     {console.log("user")}
-     {console.log(user)}
+
      if(typeof user !== 'undefined'){
          return(
             <div className = {styles.container}>

@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet'
 import { useHistory } from "react-router-dom";
 import {  useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react'
@@ -19,6 +20,7 @@ export default function LongPost(){
     const [img, setImg] = useState('');
     useEffect(()=>{
         if(post !== null) getTime();
+        
     },[post])
 
     const getPost = async() =>{
@@ -43,8 +45,17 @@ export default function LongPost(){
             const minutes = Math.floor((difference/1000)/60);
             if(minutes > 60){
                 const hours = Math.floor(minutes/60);
-                setTime(hours)
-                setTimeUnit("hours")
+
+                if(hours > 24){
+                    const days = Math.floor(hours/24);
+                    setTime(days)
+                    setTimeUnit("days")
+                }
+                else{
+                    setTime(hours)
+                    setTimeUnit("hours")
+                }
+
             }
             else{
                 setTime(minutes);
@@ -69,7 +80,14 @@ export default function LongPost(){
             body:JSON.stringify({userid:userId})
         })
         const response = await data.json();
-        setImg(response.image);
+
+        if(response.image === null){
+         setImg('null')
+        }
+        else{
+            setImg(response.image);
+        }
+
        }
       
       }
@@ -93,7 +111,7 @@ export default function LongPost(){
   
     const likePost = async() =>{
         if(like){// liked now unlike it 
-            console.log('unliking')
+
             const data = await fetch('/post/unlikepost',{
                 method:"POST",
                 headers: {
@@ -123,7 +141,7 @@ export default function LongPost(){
     }
 
     const newComment = async() =>{
-        console.log("new comment ->", comment)
+
         if(comment.length <= 0){
         alert('comment is empty')
         }
@@ -146,8 +164,7 @@ export default function LongPost(){
 
     useEffect(()=>{
         if(post !== null){
-            console.log("post is not null");
-            console.log(post)
+
         getComments();
         }
     },[post])
@@ -176,7 +193,7 @@ export default function LongPost(){
           body:JSON.stringify({id:commentId})
      })
      const response = await data.json();
-     console.log("comment", response)
+
     
      const isInList = comments.some(function(elem) {
         return (elem.id === response.id || (elem.text === response.text && elem.id === response.id))
@@ -184,7 +201,7 @@ export default function LongPost(){
       if(isInList === false){
         setComments(oldArray  => [...oldArray, response]);
       }
-      console.log(isInList)
+
    };
 
 
@@ -238,10 +255,13 @@ export default function LongPost(){
     if(post !== null){
         return(
             <div className = "LongPost">
+            <Helmet>
+            <title>Find Work Buddy Post</title>
+           </Helmet>
              <div className = "userInfo">
              <div className = "imgAndNameContainer">
-               
-                           {myImage ? <img  src = {`/img/${img}`} className = "userImage"/> : <img src = {img} className = "userImage"/>}
+                 
+                           {(myImage && img !== 'null') ? <img src = {`/img/${img}`} onClick = {()=> {history.push(`/user/${post.userid}`)}}  className = "userImage bgImg"/> : <img src = "/default.svg" onClick = {()=> {history.push(`/user/${post.userid}`)}} className = "userImage bgImg"/>}
                             
                             <div className = "nameContainer">
                                 <p className = "userName">{post.username}</p>
@@ -263,7 +283,7 @@ export default function LongPost(){
                         </div>
                         </div> */}
              </div>
-             {console.log(post)}
+
              <div className = "longTexts"> 
                 <h1 className = "longUserHeader"  >{post.header}</h1>
                 <p className = "longUserParagraph" >{post.paragraph}</p>
@@ -275,8 +295,7 @@ export default function LongPost(){
                 </div>
                 <div className = "heartContainer">
                     <p>{post.likes}</p>
-                    {console.log("DID I LIKE IT")}
-                    {console.log(like)}
+
                    <div className={like? 'heart heartactive': 'heart' } onClick = {likePost}></div>
                 </div>
              </div>
@@ -284,16 +303,17 @@ export default function LongPost(){
              <div> {/* Replies */}
                  <h1>Replies</h1>
                  <input type = "text" value = {comment} onChange = {(e)=> setComment(e.target.value)}></input>
-                 <button onClick = {newComment}>Comment</button>
+                 <button onClick = {newComment} className = "commentBtn">Comment</button>
                  <div>
-                  {console.log("commentsssssssss")}
-                  {console.log(comments)}
+
                   {/* {console.log("comments")} */}
                  {comments.map(elem => (
                    (typeof elem.userimg !== 'undefined' && (
+            
                     <div className = "commentContainer">
                        <div className = "commentNameContainer"> 
-                          <img  onClick = {() => history.push(`/user/${elem.id}`)} src =  {elem.userimg} className = "commentImage"/>
+                        {elem.ownImage ?<img onClick = {() => history.push(`/user/${elem.userid}`)} src =  {`/img/${elem.userimg}`} className = "commentImage"/> : <img src = "/default.svg" />}
+                          
                           <p className = "userName m">{elem.username}</p>
                           <p className = "LonguserParagraph">{elem.text}</p>
                           {myId === elem.userid ? <button onClick = {()=> deleteComment(elem.id)} className = "dltBtn">Delete</button> :''}

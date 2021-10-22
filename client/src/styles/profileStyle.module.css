@@ -190,14 +190,6 @@
 }
 .postsContainer{
     display: flex;
- flex-wrap: wrap;
-
-}
-@media screen and (max-width:500px) {
-    .postsContainer{
-       justify-content: center;       
-    }
-    
 }
 .aboutContainer{
     background-color: white;
@@ -247,10 +239,13 @@
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 .editContainer{
+ 
+     width: 80%;
      display: flex;
      justify-content: center;
      align-items: center;
-     margin: 2rem 0;
+     margin: 2rem auto;
+
      flex-direction: column;    
 }
 .inputContainer{
@@ -267,6 +262,7 @@
     padding:10px;
 }
 .uploadInput{
+    cursor: pointer;
     background-color:#677698;
     color:white;
     border: 0;
@@ -277,14 +273,27 @@
     display: flex;
     align-items: center;
 }
-.okBtn{
-    margin-left: 1rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #677698;
+
+
+.sendReq{
+    position:absolute;
+    background-color:#0030a0;
+    color:white;
+    padding:10px;
+    width: 40%;
+    top:40%;
+    left:30%;
 }
-.okBtn:hover{
-     background-color: #677698;
-     color:white
+.sendP{
+    text-align: center;
+
+}
+
+.deleteImage{
+    margin-top: 1rem;
+    background-color: red;
+    color:white;
+    border:0;
+    padding:10px;
+    cursor: pointer;
 }
