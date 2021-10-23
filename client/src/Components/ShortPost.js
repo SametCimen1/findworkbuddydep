@@ -132,7 +132,7 @@ export default function Post({post}){
         <div className = "post">
          <div className = "userInfo">
                    <div className = "imgAndNameContainer">
-                       {( img === "null" && !img.includes("http")) ?    
+                       {( img === "null"  || img === null || !img.includes("http")) ?    
                        <img onClick = {()=> history.push(`/user/${post.userid}`)}  src = "/default.svg" className = "userImage"/>
                        :
                        <img  onClick = {()=> history.push(`/user/${post.userid}`)}   src = {`/img/${img}`}  className = "userImage"/>
