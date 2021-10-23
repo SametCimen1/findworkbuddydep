@@ -150,7 +150,7 @@ export default function Signup(){
         
           </div>
           <div className = "imgContainer">
-              <img src  ="/signin.png" className = "img"></img>
+              <img  copyright="miro.medium.com https://miro.medium.com/max/700/1*ymMTMZf4iaM2_UwOa1UA8w.jpeg" src  ="/signin.png" className = "img"></img>
            </div>
       </div>
   )
