@@ -175,7 +175,7 @@ export default function Profile({myUser}){
                 <div className = {styles.editContainer}>
                     <form 
       id='uploadForm' 
-      action='http://updateData' 
+      action='/updateData' 
       method='post' 
       encType="multipart/form-data">
                         <div className = {styles.inputContainer}>
