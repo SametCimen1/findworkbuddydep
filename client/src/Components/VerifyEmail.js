@@ -11,7 +11,7 @@ export default function Verify(){
 
     const submitForm = async() =>{
         if(email !== '' && password !== ''){
-            const data = await fetch('http://localhost:3000/verify', {
+            const data = await fetch('/verify', {
                 method:"POST",
                 headers: {
                   'Content-Type': 'application/json'
