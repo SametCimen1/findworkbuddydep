@@ -35,7 +35,7 @@ export default function User({id}){
          return(
             <div className = {styles.container}>
             <div className = {styles.userBox} onClick = {()=> {history.push(`/user/${id}`); history.go(0)}}>
-              {user.user.ownimg ? <img className = {styles.userImage} src = {`/img/${user.user.image}`} /> : <img className = {styles.userImage} src = {user.user.image} />} 
+              {user.user.ownimg ? <img className = {styles.userImage} src = {`/img/${user.user.image}`} /> : <img className = {styles.userImage}  src = "/default.svg" />} 
                 <p className = {styles.userName}>{user.user.name}</p>
             </div>
         </div>

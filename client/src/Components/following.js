@@ -234,7 +234,6 @@ export default function Profile({myUser}){
                       {followers.length === 0 ? <p className = {styles.none}>No followers</p> : followers.map(id => 
                       <div className = {styles.followingContainer}>
                         <User id = {id} key = {id}/>
-                        <button  className = {styles.massege}>Massege</button>
                       </div>
                       )}
                     
@@ -252,7 +251,6 @@ export default function Profile({myUser}){
                     <div className = {styles.followingContainer}>
                        <User id = {id} key = {id}/>
                        <div className = {styles.btnContainer}>
-                         <button  className = {styles.massege}>Massege</button>
                          <button className ={styles.unfollow}onClick = {()=> unfollow(id)}>Unfollow</button>
                        </div>
                     </div>
